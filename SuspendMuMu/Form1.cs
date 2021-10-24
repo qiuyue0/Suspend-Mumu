@@ -52,7 +52,7 @@ namespace BOWKeyBoardHook
             this.Activate();
         }
 
-        private void »¹Ô­ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RestoreToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (this.WindowState == FormWindowState.Minimized)
             {
@@ -65,7 +65,7 @@ namespace BOWKeyBoardHook
             this.Activate();
         }
 
-        private void ¹Ø±ÕToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CloseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (hookstart)
             {
