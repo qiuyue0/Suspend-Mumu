@@ -12,7 +12,7 @@
 
 ## 注意事项
 
-只有星云引擎的黄MuMu才可以使用该程序，普通脚本不适用，可以自行修改 `SuspendMuMu/KeyboardHook` 193行
+只有星云引擎的黄MuMu才可以使用该程序，标准引擎或者其他模拟器不适用，可以自行修改 `SuspendMuMu/KeyboardHook` 193行进行适配
 
 ## 特别感谢
 
