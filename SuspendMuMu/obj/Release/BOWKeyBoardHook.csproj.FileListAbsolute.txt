@@ -1,8 +1,0 @@
-C:\Users\95631\BOWKeyBoardHook\BOWKeyBoardHook\bin\Release\BOWKeyBoardHook.exe
-C:\Users\95631\BOWKeyBoardHook\BOWKeyBoardHook\bin\Release\BOWKeyBoardHook.pdb
-C:\Users\95631\BOWKeyBoardHook\BOWKeyBoardHook\obj\Release\BOWKeyBoardHook.Form1.resources
-C:\Users\95631\BOWKeyBoardHook\BOWKeyBoardHook\obj\Release\BOWKeyBoardHook.Properties.Resources.resources
-C:\Users\95631\BOWKeyBoardHook\BOWKeyBoardHook\obj\Release\BOWKeyBoardHook.csproj.GenerateResource.cache
-C:\Users\95631\BOWKeyBoardHook\BOWKeyBoardHook\obj\Release\BOWKeyBoardHook.csproj.CoreCompileInputs.cache
-C:\Users\95631\BOWKeyBoardHook\BOWKeyBoardHook\obj\Release\BOWKeyBoardHook.exe
-C:\Users\95631\BOWKeyBoardHook\BOWKeyBoardHook\obj\Release\BOWKeyBoardHook.pdb
