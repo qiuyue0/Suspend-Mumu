@@ -13,7 +13,6 @@ namespace SuspendMuMu
 
         public delegate int HookProc(int nCode, Int32 wParam, IntPtr lParam);
         static int hKeyboardHook = 0; //声明键盘钩子处理的初始值
-        static int hMouseHook = 0;
         //值在Microsoft SDK的Winuser.h里查询
 
         public event CallBack showText;
@@ -22,7 +21,6 @@ namespace SuspendMuMu
 
         public const int WH_KEYBOARD_LL = 13;   //线程键盘钩子监听鼠标消息设为2，全局键盘监听鼠标消息设为13
 
-        public const int WH_MOUSE_LL = 14;
         HookProc KeyboardHookProcedure; //声明KeyboardHookProcedure作为HookProc类型
         //键盘结构
         [StructLayout(LayoutKind.Sequential)]
@@ -35,23 +33,6 @@ namespace SuspendMuMu
             public int dwExtraInfo; // 指定额外信息相关的信息
         }
 
-
-        [StructLayout(LayoutKind.Sequential)]
-        public class POINT
-        {
-            public int x;
-            public int y;
-        }
-        //Decla
-
-        [StructLayout(LayoutKind.Sequential)]
-        public class MouseHookStruct
-        {
-            public POINT pt;
-            public int hwnd;
-            public int wHitTestCode;
-            public int dwExtraInfo;
-        }
 
         //使用此功能，安装了一个钩子
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
@@ -109,41 +90,17 @@ namespace SuspendMuMu
                     Stop();
                     throw new Exception("安装键盘钩子失败");
                 }
-            }
-
-            // 安装鼠标钩子
-            //if (hMouseHook == 0)
-            //{
-            //    MouseHookProcedure = new HookProc(MouseHookProc);
-            //    hMouseHook = SetWindowsHookEx(WH_MOUSE_LL, MouseHookProcedure, GetModuleHandle(System.Diagnostics.Process.GetCurrentProcess().MainModule.ModuleName), 0);
-
-            //    if (hMouseHook == 0)
-            //    {
-            //        Stop();
-            //        throw new Exception("安装鼠标钩子失败");
-            //    }
-            //}
-            
+            }            
         }
         public void Stop()
         {
             bool retKeyboard = true;
-            bool retMouse = true;
-
             if (hKeyboardHook != 0)
             {
                 retKeyboard = UnhookWindowsHookEx(hKeyboardHook);
                 hKeyboardHook = 0;
             }
-
-            if (hMouseHook != 0)
-            {
-                retMouse = UnhookWindowsHookEx(hMouseHook);
-                hMouseHook = 0;
-            }
-            
             if (!(retKeyboard)) throw new Exception("卸载键盘钩子失败！");
-            if (!(retMouse)) throw new Exception("卸载鼠标钩子失败！");
         }
 
         //ToAscii职能的转换指定的虚拟键码和键盘状态的相应字符或字符
@@ -219,37 +176,6 @@ namespace SuspendMuMu
                 }
                 
             }
-
-            if (MyKeyboardHookStruct.vkCode == 176 && (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
-            {
-                keybd_event(116, 0, 0, 0);
-                return 1;
-            }
-
-            if (MyKeyboardHookStruct.vkCode == 172 && (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
-            {
-                keybd_event(112, 0, 0, 0);
-                return 1;
-            }
-
-            if (MyKeyboardHookStruct.vkCode == 166 && (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
-            {
-                keybd_event(27, 0, 0, 0);
-                return 1;
-            }
-
-            if (MyKeyboardHookStruct.vkCode == 175 && (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
-            {
-                keybd_event(121, 0, 0, 0);
-                return 1;
-            }
-
-            if (MyKeyboardHookStruct.vkCode == 174 && (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
-            {
-                keybd_event(122, 0, 0, 0);
-                return 1;
-            }
-
             // 侦听键盘事件
             if ((nCode >=0) && (KeyDownEvent != null || KeyUpEvent != null || KeyPressEvent != null))
             {
@@ -287,21 +213,6 @@ namespace SuspendMuMu
             //如果返回0或调用CallNextHookEx函数则消息出了这个钩子继续往下传递，也就是传给消息真正的接受者
             return CallNextHookEx(hKeyboardHook, nCode, wParam, lParam);
         }
-
-
-        private const int WM_LBUTTONDOWN = 0x201;
-        private const int WM_RBUTTONDOWN = 0x204;
-        private const int WM_LBUTTONDBLCLK = 0x203;
-        private const int WM_RBUTTONDBLCLK = 0x206;
-
-
-
-
-
-
-
-
-
 
         ~KeyboardHook()
         {
