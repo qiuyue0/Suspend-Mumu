@@ -25,7 +25,7 @@ public static class ProcessExtension
             {
                 break;
             }
-            SuspendThread(pOpenThread);
+            _ = SuspendThread(pOpenThread);
         }
     }
 
