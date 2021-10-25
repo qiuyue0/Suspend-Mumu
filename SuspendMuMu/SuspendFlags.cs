@@ -1,4 +1,5 @@
 ﻿using System;
+
 [Flags]
 public enum ThreadAccess : int
 {

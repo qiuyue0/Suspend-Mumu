@@ -1,27 +1,33 @@
 using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using System.Diagnostics;
+
 namespace SuspendMuMu
 {
-    class KeyboardHook
+    internal class KeyboardHook
     {
         public event KeyEventHandler KeyDownEvent;
+
         public event KeyPressEventHandler KeyPressEvent;
+
         public event KeyEventHandler KeyUpEvent;
+
         public event MouseEventHandler OnMouseActivity;
 
         public delegate int HookProc(int nCode, Int32 wParam, IntPtr lParam);
-        static int hKeyboardHook = 0; //声明键盘钩子处理的初始值
+
+        private static int hKeyboardHook = 0; //声明键盘钩子处理的初始值
         //值在Microsoft SDK的Winuser.h里查询
 
         public event CallBack showText;
-        public delegate void CallBack(string text1, string text2, string text3);
 
+        public delegate void CallBack(string text1, string text2, string text3);
 
         public const int WH_KEYBOARD_LL = 13;   //线程键盘钩子监听鼠标消息设为2，全局键盘监听鼠标消息设为13
 
-        HookProc KeyboardHookProcedure; //声明KeyboardHookProcedure作为HookProc类型
+        private HookProc KeyboardHookProcedure; //声明KeyboardHookProcedure作为HookProc类型
+
         //键盘结构
         [StructLayout(LayoutKind.Sequential)]
         public class KeyboardHookStruct
@@ -32,7 +38,6 @@ namespace SuspendMuMu
             public int time; // 指定的时间戳记的这个讯息
             public int dwExtraInfo; // 指定额外信息相关的信息
         }
-
 
         //使用此功能，安装了一个钩子
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
@@ -49,18 +54,13 @@ namespace SuspendMuMu
         [DllImport("user32.dll")]
         public static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
 
-
         // 取得当前线程编号（线程钩子需要用到）
         [DllImport("kernel32.dll")]
-        static extern int GetCurrentThreadId();
+        private static extern int GetCurrentThreadId();
 
         //使用WINDOWS API函数代替获取当前实例的函数,防止钩子失效
         [DllImport("kernel32.dll")]
         public static extern IntPtr GetModuleHandle(string name);
-
-
-
-
 
         public void Start()
         {
@@ -90,8 +90,9 @@ namespace SuspendMuMu
                     Stop();
                     throw new Exception("安装键盘钩子失败");
                 }
-            }            
+            }
         }
+
         public void Stop()
         {
             bool retKeyboard = true;
@@ -115,7 +116,6 @@ namespace SuspendMuMu
         [DllImport("user32")]
         public static extern int GetKeyboardState(byte[] pbKeyState);
 
-
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         private static extern short GetKeyState(int vKey);
 
@@ -131,19 +131,22 @@ namespace SuspendMuMu
                 case Status.Resume:
                     process.Suspend();
                     break;
+
                 case Status.Suspend:
                     process.Resume();
                     break;
+
                 default:
                     throw new NotImplementedException();
             }
         }
-        Status status = Status.Resume;
+
+        private Status status = Status.Resume;
+
         private int KeyboardHookProc(int nCode, Int32 wParam, IntPtr lParam)
         {
-             
             KeyboardHookStruct MyKeyboardHookStruct = (KeyboardHookStruct)Marshal.PtrToStructure(lParam, typeof(KeyboardHookStruct));
-            if (MyKeyboardHookStruct.vkCode == 113&(wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
+            if (MyKeyboardHookStruct.vkCode == 113 & (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
             {
                 try
                 {
@@ -157,6 +160,7 @@ namespace SuspendMuMu
                                 showText("NebulaPlayer.exe Suspended.", null, null);
                                 status = Status.Suspend;
                                 return 1;
+
                             case Status.Suspend:
                                 showText("NebulaPlayer.exe Resumed.", null, null);
                                 status = Status.Resume;
@@ -172,12 +176,10 @@ namespace SuspendMuMu
                         showText(text, null, null);
                         return 1;
                     }
-
                 }
-                
             }
             // 侦听键盘事件
-            if ((nCode >=0) && (KeyDownEvent != null || KeyUpEvent != null || KeyPressEvent != null))
+            if ((nCode >= 0) && (KeyDownEvent != null || KeyUpEvent != null || KeyPressEvent != null))
             {
                 // raise KeyDown
                 if (KeyDownEvent != null && (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))

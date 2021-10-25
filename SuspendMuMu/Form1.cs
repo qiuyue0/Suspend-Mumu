@@ -1,16 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Diagnostics;
 using SuspendMuMu;
+using System;
+using System.Windows.Forms;
+
 namespace BOWKeyBoardHook
 {
-    
     public partial class Form1 : Form
     {
         public Form1()
@@ -75,8 +68,9 @@ namespace BOWKeyBoardHook
             this.Close();
         }
 
-        KeyboardHook k_hook = new KeyboardHook();
-        bool hookstart = true;
+        private KeyboardHook k_hook = new KeyboardHook();
+        private bool hookstart = true;
+
         private void Button1_Click(object sender, EventArgs e)
         {
             try
@@ -128,12 +122,10 @@ namespace BOWKeyBoardHook
 
         private void label1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void lb1_Click(object sender, EventArgs e)
         {
-
         }
     }
 }

@@ -2,17 +2,19 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-//Code source from 
+//Code source from
 //http://stackoverflow.com/questions/71257/suspend-process-in-c-sharp
 
 public static class ProcessExtension
 {
     [DllImport("kernel32.dll")]
-    static extern IntPtr OpenThread(ThreadAccess dwDesiredAccess, bool bInheritHandle, uint dwThreadId);
+    private static extern IntPtr OpenThread(ThreadAccess dwDesiredAccess, bool bInheritHandle, uint dwThreadId);
+
     [DllImport("kernel32.dll")]
-    static extern uint SuspendThread(IntPtr hThread);
+    private static extern uint SuspendThread(IntPtr hThread);
+
     [DllImport("kernel32.dll")]
-    static extern int ResumeThread(IntPtr hThread);
+    private static extern int ResumeThread(IntPtr hThread);
 
     public static void Suspend(this Process process)
     {
@@ -26,6 +28,7 @@ public static class ProcessExtension
             SuspendThread(pOpenThread);
         }
     }
+
     public static void Resume(this Process process)
     {
         foreach (ProcessThread thread in process.Threads)
@@ -38,5 +41,4 @@ public static class ProcessExtension
             ResumeThread(pOpenThread);
         }
     }
-
 }
