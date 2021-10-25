@@ -12,10 +12,10 @@
 
 ## 注意事项
 
-只有星云引擎的黄MuMu才可以使用该程序，标准引擎或者其他模拟器不适用，可以自行修改 `SuspendMuMu/KeyboardHook` 193行进行适配
+只有星云引擎的黄MuMu才可以使用该程序，标准引擎或者其他模拟器不适用，可以自行修改 `SuspendMuMu/KeyboardHook` 150行进行适配
 
 ## 特别感谢
 
-[SarathR/ProcessUtil: List, Kill, Suspend or Resume a process from command line (github.com)](https://github.com/SarathR/ProcessUtil) 提供挂起进程模块
+[SarathR/ProcessUtil](https://github.com/SarathR/ProcessUtil) 提供挂起进程模块
 
 BOWKeyboardHook 提供了全局监听模块，虽然不知道出处是哪
