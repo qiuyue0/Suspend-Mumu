@@ -107,7 +107,7 @@ namespace BOWKeyBoardHook
             this.label1.Size = new System.Drawing.Size(44, 18);
             this.label1.TabIndex = 3;
             this.label1.Text = "状态：";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.label1.Click += new System.EventHandler(this.Label1_Click);
             // 
             // lb1
             // 
@@ -118,7 +118,7 @@ namespace BOWKeyBoardHook
             this.lb1.Size = new System.Drawing.Size(176, 18);
             this.lb1.TabIndex = 4;
             this.lb1.Text = "程序初始化成功，等待用户输入";
-            this.lb1.Click += new System.EventHandler(this.lb1_Click);
+            this.lb1.Click += new System.EventHandler(this.Lb1_Click);
             // 
             // lb2
             // 

@@ -128,11 +128,11 @@ namespace BOWKeyBoardHook
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void Label1_Click(object sender, EventArgs e)
         {
         }
 
-        private void lb1_Click(object sender, EventArgs e)
+        private void Lb1_Click(object sender, EventArgs e)
         {
         }
     }

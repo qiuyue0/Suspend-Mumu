@@ -38,7 +38,7 @@ public static class ProcessExtension
             {
                 break;
             }
-            ResumeThread(pOpenThread);
+            _ = ResumeThread(pOpenThread);
         }
     }
 }

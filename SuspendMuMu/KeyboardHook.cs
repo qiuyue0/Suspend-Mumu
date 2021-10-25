@@ -99,7 +99,7 @@ namespace SuspendMuMu
                 retKeyboard = UnhookWindowsHookEx(hKeyboardHook);
                 hKeyboardHook = 0;
             }
-            if (!(retKeyboard)) throw new Exception("卸载键盘钩子失败！");
+            if (!retKeyboard) throw new Exception("卸载键盘钩子失败！");
         }
 
         //ToAscii职能的转换指定的虚拟键码和键盘状态的相应字符或字符
@@ -148,7 +148,7 @@ namespace SuspendMuMu
             {
                 try
                 {
-                    var process = Process.GetProcessesByName("NebulaPlayer")[0]; // 星云引擎的MuMu进程名称为NebulaPlayer，若为标准引擎或其他模拟器请自行修改
+                    Process process = Process.GetProcessesByName("NebulaPlayer")[0]; // 星云引擎的MuMu进程名称为NebulaPlayer，若为标准引擎或其他模拟器请自行修改
                     if (ShowText != null)
                     {
                         ExecuteOption(status, process);
@@ -172,7 +172,7 @@ namespace SuspendMuMu
                 {
                     if (ShowText != null)
                     {
-                        var text = "MuMu模拟器尚未运行";
+                        string text = "MuMu模拟器尚未运行";
                         ShowText(text, null, null);
                         return 1;
                     }
