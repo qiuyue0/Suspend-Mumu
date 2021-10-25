@@ -20,7 +20,7 @@ public static class ProcessExtension
     {
         foreach (ProcessThread thread in process.Threads)
         {
-            var pOpenThread = OpenThread(ThreadAccess.SUSPEND_RESUME, false, (uint)thread.Id);
+            IntPtr pOpenThread = OpenThread(ThreadAccess.SUSPEND_RESUME, false, (uint)thread.Id);
             if (pOpenThread == IntPtr.Zero)
             {
                 break;
@@ -33,7 +33,7 @@ public static class ProcessExtension
     {
         foreach (ProcessThread thread in process.Threads)
         {
-            var pOpenThread = OpenThread(ThreadAccess.SUSPEND_RESUME, false, (uint)thread.Id);
+            IntPtr pOpenThread = OpenThread(ThreadAccess.SUSPEND_RESUME, false, (uint)thread.Id);
             if (pOpenThread == IntPtr.Zero)
             {
                 break;

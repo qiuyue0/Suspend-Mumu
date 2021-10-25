@@ -13,49 +13,57 @@ namespace BOWKeyBoardHook
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            k_hook.showText += showtext;
+            k_hook.ShowText += Showtext;
             k_hook.Start();//安装键盘钩子
             hookstart = true;
             //最小化主窗口
-            this.WindowState = FormWindowState.Minimized;
+            WindowState = FormWindowState.Minimized;
             //任务栏取消图标
-            this.ShowInTaskbar = false;
+            ShowInTaskbar = false;
         }
 
-        private void showtext(string text1, string text2, string text3)
+        private void Showtext(string text1, string text2, string text3)
         {
             if (text1 != null)
+            {
                 lb1.Text = text1;
+            }
+
             if (text2 != null)
+            {
                 lb2.Text = text2;
+            }
+
             if (text3 != null)
+            {
                 lb3.Text = text3;
+            }
         }
 
         private void NotifyIcon1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (this.WindowState == FormWindowState.Minimized)
+            if (WindowState == FormWindowState.Minimized)
             {
                 //还原窗体
-                this.WindowState = FormWindowState.Normal;
+                WindowState = FormWindowState.Normal;
                 //任务显示
-                this.ShowInTaskbar = true;
+                ShowInTaskbar = true;
             }
             //激活窗体
-            this.Activate();
+            Activate();
         }
 
         private void RestoreToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.WindowState == FormWindowState.Minimized)
+            if (WindowState == FormWindowState.Minimized)
             {
                 //还原窗体
-                this.WindowState = FormWindowState.Normal;
+                WindowState = FormWindowState.Normal;
                 //任务显示
-                this.ShowInTaskbar = true;
+                ShowInTaskbar = true;
             }
             //激活窗体
-            this.Activate();
+            Activate();
         }
 
         private void CloseToolStripMenuItem_Click(object sender, EventArgs e)
@@ -64,8 +72,8 @@ namespace BOWKeyBoardHook
             {
                 k_hook.Stop();
             }
-            this.Dispose();
-            this.Close();
+            Dispose();
+            Close();
         }
 
         private KeyboardHook k_hook = new KeyboardHook();
@@ -82,7 +90,7 @@ namespace BOWKeyBoardHook
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                _ = MessageBox.Show(ex.ToString());
             }
         }
 
@@ -97,7 +105,7 @@ namespace BOWKeyBoardHook
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                _ = MessageBox.Show(ex.ToString());
             }
         }
 
@@ -106,17 +114,17 @@ namespace BOWKeyBoardHook
             //取消关闭窗口
             e.Cancel = true;
             //最小化主窗口
-            this.WindowState = FormWindowState.Minimized;
+            WindowState = FormWindowState.Minimized;
             //任务栏取消图标
-            this.ShowInTaskbar = false;
+            ShowInTaskbar = false;
         }
 
         private void Form1_Deactivate(object sender, EventArgs e)
         {
-            if (this.WindowState == FormWindowState.Minimized)
+            if (WindowState == FormWindowState.Minimized)
             {
                 //任务栏取消图标
-                this.ShowInTaskbar = false;
+                ShowInTaskbar = false;
             }
         }
 

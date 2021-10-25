@@ -13,14 +13,12 @@ namespace SuspendMuMu
 
         public event KeyEventHandler KeyUpEvent;
 
-        public event MouseEventHandler OnMouseActivity;
-
         public delegate int HookProc(int nCode, Int32 wParam, IntPtr lParam);
 
         private static int hKeyboardHook = 0; //声明键盘钩子处理的初始值
         //值在Microsoft SDK的Winuser.h里查询
 
-        public event CallBack showText;
+        public event CallBack ShowText;
 
         public delegate void CallBack(string text1, string text2, string text3);
 
@@ -151,29 +149,31 @@ namespace SuspendMuMu
                 try
                 {
                     var process = Process.GetProcessesByName("NebulaPlayer")[0]; // 星云引擎的MuMu进程名称为NebulaPlayer，若为标准引擎或其他模拟器请自行修改
-                    if (showText != null)
+                    if (ShowText != null)
                     {
                         ExecuteOption(status, process);
                         switch (status)
                         {
                             case Status.Resume:
-                                showText("NebulaPlayer.exe Suspended.", null, null);
+                                ShowText("NebulaPlayer.exe Suspended.", null, null);
                                 status = Status.Suspend;
                                 return 1;
 
                             case Status.Suspend:
-                                showText("NebulaPlayer.exe Resumed.", null, null);
+                                ShowText("NebulaPlayer.exe Resumed.", null, null);
                                 status = Status.Resume;
                                 return 1;
+                            default:
+                                break;
                         }
                     }
                 }
                 catch
                 {
-                    if (showText != null)
+                    if (ShowText != null)
                     {
                         var text = "MuMu模拟器尚未运行";
-                        showText(text, null, null);
+                        ShowText(text, null, null);
                         return 1;
                     }
                 }
