@@ -17,7 +17,7 @@ namespace BOWKeyBoardHook
             k_hook.Start();//安装键盘钩子
             hookstart = true;
             //最小化主窗口
-            WindowState = FormWindowState.Minimized;
+            //WindowState = FormWindowState.Minimized;
             //任务栏取消图标
             ShowInTaskbar = false;
         }

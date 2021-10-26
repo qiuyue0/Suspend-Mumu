@@ -47,7 +47,7 @@ namespace BOWKeyBoardHook
             // 
             this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "BOW键盘Hook";
+            this.notifyIcon1.Text = "SuspendMuMu";
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon1_MouseClick);
             // 
@@ -123,10 +123,11 @@ namespace BOWKeyBoardHook
             // lb2
             // 
             this.lb2.AutoSize = true;
-            this.lb2.Location = new System.Drawing.Point(210, 54);
+            this.lb2.Location = new System.Drawing.Point(144, 62);
             this.lb2.Name = "lb2";
-            this.lb2.Size = new System.Drawing.Size(0, 18);
+            this.lb2.Size = new System.Drawing.Size(260, 18);
             this.lb2.TabIndex = 6;
+            this.lb2.Text = "如果F2不能正常恢复MuMu，请点击停止再启动";
             // 
             // lb3
             // 
