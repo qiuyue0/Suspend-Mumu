@@ -126,10 +126,6 @@ namespace SuspendMuMu
         private int KeyboardHookProc(int nCode, int wParam, IntPtr lParam)
         {
             KeyboardHookStruct MyKeyboardHookStruct = (KeyboardHookStruct)Marshal.PtrToStructure(lParam, typeof(KeyboardHookStruct));
-            if (MyKeyboardHookStruct.vkCode == 114 & (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
-            {
-                ShowText("Test", null, null);
-            }
             if (MyKeyboardHookStruct.vkCode == 113 & (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
             {
                 try
