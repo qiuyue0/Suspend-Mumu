@@ -12,7 +12,8 @@ namespace SuspendMuMu
     public class Getstatus { 
         public Status GetThreadStatus()
         {
-            Process[] processes = Process.GetProcessesByName("NebulaPlayer");
+            var ProcessName = "NebulaPlayer";
+            Process[] processes = Process.GetProcessesByName(ProcessName);
 
             if (null != processes)
             {

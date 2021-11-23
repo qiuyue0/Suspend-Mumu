@@ -14,10 +14,11 @@
 
 ## 注意事项
 
-只有星云引擎的黄MuMu才可以使用该程序，标准引擎或者其他模拟器不适用，可以自行修改 `SuspendMuMu/KeyboardHook` 151行进行适配。修改147行vkCode的判断逻辑改变热键。
+只有星云引擎的黄MuMu才可以使用该程序，标准引擎或者其他模拟器不适用，可以自行修改 `Status.cs`中的`ProcessName`进行适配。
+修改`KeyboardHook.cs`中`KeyboardHookProc`中`vkCode`的判断改变热键。
 
 ## 特别感谢
 
 [SarathR/ProcessUtil](https://github.com/SarathR/ProcessUtil) 提供挂起进程模块
 
-BOWKeyboardHook 提供了全局监听模块，虽然不知道出处是哪
+BOWKeyboardHook 提供了全局监听模块
