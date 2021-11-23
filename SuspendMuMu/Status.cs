@@ -9,10 +9,11 @@ namespace SuspendMuMu
         Resume,
         NotRunning
     }
-    public static class Getstatus { 
-        public static Status GetThreadStatus()
+    public class Getstatus { 
+        public Status GetThreadStatus()
         {
             Process[] processes = Process.GetProcessesByName("NebulaPlayer");
+
             if (null != processes)
             {
                 ProcessThread thread = processes[0].Threads[0];

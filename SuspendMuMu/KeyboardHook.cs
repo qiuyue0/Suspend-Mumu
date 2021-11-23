@@ -65,7 +65,7 @@ namespace SuspendMuMu
             if (hKeyboardHook == 0)
             {
                 KeyboardHookProcedure = new HookProc(KeyboardHookProc);
-                hKeyboardHook = SetWindowsHookEx(WH_KEYBOARD_LL, KeyboardHookProcedure, GetModuleHandle(System.Diagnostics.Process.GetCurrentProcess().MainModule.ModuleName), 0);
+                hKeyboardHook = SetWindowsHookEx(WH_KEYBOARD_LL, KeyboardHookProcedure, GetModuleHandle(Process.GetCurrentProcess().MainModule.ModuleName), 0);
                 //hKeyboardHook = SetWindowsHookEx(WH_KEYBOARD_LL, KeyboardHookProcedure, Marshal.GetHINSTANCE(Assembly.GetExecutingAssembly().GetModules()[0]), 0);
                 //************************************
                 //键盘线程钩子
@@ -123,34 +123,41 @@ namespace SuspendMuMu
 
 
 
-        private int KeyboardHookProc(int nCode, Int32 wParam, IntPtr lParam)
+        private int KeyboardHookProc(int nCode, int wParam, IntPtr lParam)
         {
-            Start();
             KeyboardHookStruct MyKeyboardHookStruct = (KeyboardHookStruct)Marshal.PtrToStructure(lParam, typeof(KeyboardHookStruct));
+            if (MyKeyboardHookStruct.vkCode == 114 & (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
+            {
+                ShowText("Test", null, null);
+            }
             if (MyKeyboardHookStruct.vkCode == 113 & (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
             {
                 try
                 {
-                    Status status = Getstatus.GetThreadStatus();
+                    Getstatus status = new Getstatus();
                     if (ShowText != null)
                     {
-                        switch (status)
+                        switch (status.GetThreadStatus())
                         {
                             case Status.Suspend:
                                 ShowText("NebulaPlayer.exe Suspended.", null, null);
-                                return 1;
+                                return 0;
 
                             case Status.Resume:
                                 ShowText("NebulaPlayer.exe Resumed.", null, null);
-                                return 1;
+                                return 0;
                             case Status.NotRunning:
                                 ShowText("NebulaPlayer.exe Not Running.", null, null);
-                                return 1;
+                                return 0;
                             default:
-                                break;
+                                return 0;
                         }
                     }
                 }
+                //catch(InvalidOperationException ex)
+                //{
+                //    Start();
+                //}
                 catch
                 {
                     if (ShowText != null)
@@ -159,6 +166,11 @@ namespace SuspendMuMu
                         ShowText(text, null, null);
                         return 1;
                     }
+                }
+                finally
+                {
+                    Stop();
+                    Start();
                 }
             }
             // 侦听键盘事件

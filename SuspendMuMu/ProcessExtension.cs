@@ -21,10 +21,10 @@ public static class ProcessExtension
         foreach (ProcessThread thread in process.Threads)
         {
             IntPtr pOpenThread = OpenThread(ThreadAccess.SUSPEND_RESUME, false, (uint)thread.Id);
-            if (pOpenThread == IntPtr.Zero)
-            {
-                break;
-            }
+            ////if (pOpenThread == IntPtr.Zero)
+            ////{
+            //    break;
+            //}
             _ = SuspendThread(pOpenThread);
         }
     }
