@@ -112,7 +112,7 @@ namespace BOWKeyBoardHook
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             //取消关闭窗口
-            e.Cancel = true;
+            //e.Cancel = true;
             //最小化主窗口
             WindowState = FormWindowState.Minimized;
             //任务栏取消图标
