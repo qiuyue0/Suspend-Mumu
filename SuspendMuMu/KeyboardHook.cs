@@ -12,7 +12,6 @@ namespace SuspendMuMu
         public event KeyPressEventHandler KeyPressEvent;
 
         public event KeyEventHandler KeyUpEvent;
-
         public delegate int HookProc(int nCode, Int32 wParam, IntPtr lParam);
 
         private static int hKeyboardHook = 0; //声明键盘钩子处理的初始值
@@ -122,46 +121,30 @@ namespace SuspendMuMu
         private const int WM_SYSKEYDOWN = 0x104;//SYSKEYDOWN
         private const int WM_SYSKEYUP = 0x105;//SYSKEYUP
 
-        private static void ExecuteOption(Status status, Process process)
-        {
-            switch (status)
-            {
-                case Status.Resume:
-                    process.Suspend();
-                    break;
 
-                case Status.Suspend:
-                    process.Resume();
-                    break;
-
-                default:
-                    throw new NotImplementedException();
-            }
-        }
-
-        private Status status = Status.Resume;
 
         private int KeyboardHookProc(int nCode, Int32 wParam, IntPtr lParam)
         {
+            Start();
             KeyboardHookStruct MyKeyboardHookStruct = (KeyboardHookStruct)Marshal.PtrToStructure(lParam, typeof(KeyboardHookStruct));
             if (MyKeyboardHookStruct.vkCode == 113 & (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
             {
                 try
                 {
-                    Process process = Process.GetProcessesByName("NebulaPlayer")[0]; // 星云引擎的MuMu进程名称为NebulaPlayer，若为标准引擎或其他模拟器请自行修改
+                    Status status = Getstatus.GetThreadStatus();
                     if (ShowText != null)
                     {
-                        ExecuteOption(status, process);
                         switch (status)
                         {
-                            case Status.Resume:
+                            case Status.Suspend:
                                 ShowText("NebulaPlayer.exe Suspended.", null, null);
-                                status = Status.Suspend;
                                 return 1;
 
-                            case Status.Suspend:
+                            case Status.Resume:
                                 ShowText("NebulaPlayer.exe Resumed.", null, null);
-                                status = Status.Resume;
+                                return 1;
+                            case Status.NotRunning:
+                                ShowText("NebulaPlayer.exe Not Running.", null, null);
                                 return 1;
                             default:
                                 break;
