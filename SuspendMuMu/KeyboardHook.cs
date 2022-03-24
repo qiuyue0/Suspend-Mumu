@@ -47,16 +47,16 @@ namespace SuspendMuMu
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         public static extern bool UnhookWindowsHookEx(int idHook);
 
-        ////使用此功能，通过信息钩子继续下一个钩子
-        //[DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
-        //public static extern int CallNextHookEx(int idHook, int nCode, Int32 wParam, IntPtr lParam);
+        //使用此功能，通过信息钩子继续下一个钩子
+        [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
+        public static extern int CallNextHookEx(int idHook, int nCode, Int32 wParam, IntPtr lParam);
 
-        //[DllImport("user32.dll")]
-        //public static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
+        [DllImport("user32.dll")]
+        public static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
 
         // 取得当前线程编号（线程钩子需要用到）
-        //[DllImport("kernel32.dll")]
-        //private static extern int GetCurrentThreadId();
+        [DllImport("kernel32.dll")]
+        private static extern int GetCurrentThreadId();
 
         //使用WINDOWS API函数代替获取当前实例的函数,防止钩子失效
         [DllImport("kernel32.dll")]
@@ -213,8 +213,7 @@ namespace SuspendMuMu
             }
             //如果返回1，则结束消息，这个消息到此为止，不再传递。
             //如果返回0或调用CallNextHookEx函数则消息出了这个钩子继续往下传递，也就是传给消息真正的接受者
-            //return CallNextHookEx(hKeyboardHook, nCode, wParam, lParam);
-            return 1;
+            return CallNextHookEx(hKeyboardHook, nCode, wParam, lParam);
         }
         
         ~KeyboardHook()
