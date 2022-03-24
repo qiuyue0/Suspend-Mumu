@@ -1,32 +1,45 @@
 ﻿using System.Diagnostics;
 using System.Threading;
+using System.Management;
+using System.Text.RegularExpressions;
+using System;
+using System.Collections.Generic;
 
 namespace SuspendMuMu
 {
+    // 全局变量，用来存放当前选择的pid
+    public class common 
+    {
+    private static int PID;
+
+        public static int content
+        {
+            get { return PID; }
+            set { PID = value; }
+        }
+    }
     public enum Status
     {
         Suspend,
         Resume,
         NotRunning
     }
-    public class Getstatus { 
-        public Status GetThreadStatus()
+    public static class Getstatus {
+        public static Status GetThreadStatus(Process process)
         {
-            var ProcessName = "NebulaPlayer";
-            Process[] processes = Process.GetProcessesByName(ProcessName);
-
-            if (null != processes)
+            
+            
+            if (null != process)
             {
-                ProcessThread thread = processes[0].Threads[0];
+                ProcessThread thread = process.Threads[0];
                 if (thread.WaitReason == ThreadWaitReason.Suspended)
                 {
-                    processes[0].Resume();
-                    return Status.Resume;
+                    
+                    return Status.Suspend;
                 }
                 else
                 {
-                    processes[0].Suspend();
-                    return Status.Suspend;
+                    return Status.Resume;
                 }
             }
             else

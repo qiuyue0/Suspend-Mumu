@@ -1,8 +1,11 @@
 using System;
 using System.Diagnostics;
+using System.Management;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
+using System.Windows.Controls;
 using System.Windows.Forms;
-
+using System.Collections.Generic;
 namespace SuspendMuMu
 {
     internal class KeyboardHook
@@ -44,23 +47,25 @@ namespace SuspendMuMu
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         public static extern bool UnhookWindowsHookEx(int idHook);
 
-        //使用此功能，通过信息钩子继续下一个钩子
-        [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
-        public static extern int CallNextHookEx(int idHook, int nCode, Int32 wParam, IntPtr lParam);
+        ////使用此功能，通过信息钩子继续下一个钩子
+        //[DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
+        //public static extern int CallNextHookEx(int idHook, int nCode, Int32 wParam, IntPtr lParam);
 
-        [DllImport("user32.dll")]
-        public static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
+        //[DllImport("user32.dll")]
+        //public static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
 
         // 取得当前线程编号（线程钩子需要用到）
-        [DllImport("kernel32.dll")]
-        private static extern int GetCurrentThreadId();
+        //[DllImport("kernel32.dll")]
+        //private static extern int GetCurrentThreadId();
 
         //使用WINDOWS API函数代替获取当前实例的函数,防止钩子失效
         [DllImport("kernel32.dll")]
         public static extern IntPtr GetModuleHandle(string name);
-
-        public void Start()
+        
+        public void Start(string txt = "主窗口")
         {
+
+
             // 安装键盘钩子
             if (hKeyboardHook == 0)
             {
@@ -88,7 +93,7 @@ namespace SuspendMuMu
                     throw new Exception("安装键盘钩子失败");
                 }
             }
-        }
+            }
 
         public void Stop()
         {
@@ -125,28 +130,31 @@ namespace SuspendMuMu
 
         private int KeyboardHookProc(int nCode, int wParam, IntPtr lParam)
         {
+            
             KeyboardHookStruct MyKeyboardHookStruct = (KeyboardHookStruct)Marshal.PtrToStructure(lParam, typeof(KeyboardHookStruct));
             if (MyKeyboardHookStruct.vkCode == 113 & (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
             {
                 try
                 {
-                    Getstatus status = new Getstatus();
+                    var PID = common.content;
+                    Process process = Process.GetProcessById(PID);
                     if (ShowText != null)
                     {
-                        switch (status.GetThreadStatus())
+                        switch (Getstatus.GetThreadStatus(process))
                         {
                             case Status.Suspend:
-                                ShowText("NebulaPlayer.exe Suspended.", null, null);
-                                return 0;
-
+                                process.Resume();
+                                ShowText("MuMu模拟器进程已恢复", null, null);
+                                break;
                             case Status.Resume:
-                                ShowText("NebulaPlayer.exe Resumed.", null, null);
-                                return 0;
+                                process.Suspend();
+                                ShowText("MuMu模拟器进程已暂停", null, null);
+                                break;
                             case Status.NotRunning:
-                                ShowText("NebulaPlayer.exe Not Running.", null, null);
-                                return 0;
+                                ShowText("MuMu模拟器进程尚未运行", null, null);
+                                break;
                             default:
-                                return 0;
+                                break;
                         }
                     }
                 }
@@ -159,8 +167,9 @@ namespace SuspendMuMu
                     if (ShowText != null)
                     {
                         string text = "MuMu模拟器尚未运行";
+                        Stop();
+                        Start();
                         ShowText(text, null, null);
-                        return 1;
                     }
                 }
                 finally
@@ -204,9 +213,10 @@ namespace SuspendMuMu
             }
             //如果返回1，则结束消息，这个消息到此为止，不再传递。
             //如果返回0或调用CallNextHookEx函数则消息出了这个钩子继续往下传递，也就是传给消息真正的接受者
-            return CallNextHookEx(hKeyboardHook, nCode, wParam, lParam);
+            //return CallNextHookEx(hKeyboardHook, nCode, wParam, lParam);
+            return 1;
         }
-
+        
         ~KeyboardHook()
         {
             Stop();

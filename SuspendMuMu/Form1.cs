@@ -1,6 +1,13 @@
 using SuspendMuMu;
 using System;
 using System.Windows.Forms;
+using System.Management;
+using System.Text.RegularExpressions;
+using static System.Net.Mime.MediaTypeNames;
+using System.Collections.Generic;
+using System.Diagnostics;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Security.Cryptography;
 
 namespace BOWKeyBoardHook
 {
@@ -9,6 +16,15 @@ namespace BOWKeyBoardHook
         public Form1()
         {
             InitializeComponent();
+            Process[] processes = Process.GetProcessesByName("NebulaPlayer");
+            IList<int> infoList = new List<int>();
+            foreach (Process process in processes)
+            {
+                infoList.Add(process.Id);
+            }
+            comboBox1.DataSource = infoList;
+            common.content = infoList[0];
+            Update_lb1_text();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -23,7 +39,7 @@ namespace BOWKeyBoardHook
         }
 
         private void Showtext(string text1, string text2, string text3)
-        {
+        { 
             if (text1 != null)
             {
                 lb1.Text = text1;
@@ -116,7 +132,7 @@ namespace BOWKeyBoardHook
             //最小化主窗口
             WindowState = FormWindowState.Minimized;
             //任务栏取消图标
-            ShowInTaskbar = false;
+            ShowInTaskbar = true;
         }
 
         private void Form1_Deactivate(object sender, EventArgs e)
@@ -134,6 +150,73 @@ namespace BOWKeyBoardHook
 
         private void Lb1_Click(object sender, EventArgs e)
         {
+        }
+
+        private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void comboBox1_Click(object sender,EventArgs e)
+        {
+
+        }
+        private void comboBox1_DropDown(object sender, EventArgs e)
+        {
+            Process[] processes = Process.GetProcessesByName("NebulaPlayer");
+            IList<int> infoList = new List<int>();
+            foreach (Process process in processes)
+            {
+                infoList.Add(process.Id);
+            }
+            comboBox1.DataSource = null;
+            comboBox1.DataSource = infoList;
+        }
+        private void Update_lb1_text()
+        {
+            var PID = common.content;
+            Process process = Process.GetProcessById(PID);
+            string text = "MuMu模拟器进程";
+            switch (Getstatus.GetThreadStatus(process))
+            {
+                case SuspendMuMu.Status.Suspend:
+                    text += "已暂停";
+                    break;
+                case SuspendMuMu.Status.Resume:
+                    text += "已恢复";
+                    break;
+                case SuspendMuMu.Status.NotRunning:
+                    text += "尚未运行";
+                    break;
+
+            }
+            lb1.Text = text;
+
+        }
+        private void comboBox1_DropDownClosed(object sender, EventArgs e)
+        {
+            common.content = int.Parse(comboBox1.SelectedItem.ToString());
+            var PID = common.content;
+            Update_lb1_text();
+            
+        }
+        private void label2_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lb2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

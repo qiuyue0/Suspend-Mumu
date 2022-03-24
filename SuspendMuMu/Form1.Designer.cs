@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Diagnostics;
+
 namespace BOWKeyBoardHook
 {
     partial class Form1
@@ -38,9 +41,16 @@ namespace BOWKeyBoardHook
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lb1 = new System.Windows.Forms.Label();
-            this.lb2 = new System.Windows.Forms.Label();
             this.lb3 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.lb2 = new System.Windows.Forms.Label();
+            this.programBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.programBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.emulatorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.programBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.programBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emulatorBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // notifyIcon1
@@ -58,6 +68,7 @@ namespace BOWKeyBoardHook
             this.CloseToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(101, 48);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // RestoreToolStripMenuItem
             // 
@@ -102,7 +113,7 @@ namespace BOWKeyBoardHook
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(144, 26);
+            this.label1.Location = new System.Drawing.Point(129, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 18);
             this.label1.TabIndex = 3;
@@ -113,21 +124,11 @@ namespace BOWKeyBoardHook
             // 
             this.lb1.AutoSize = true;
             this.lb1.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb1.Location = new System.Drawing.Point(194, 26);
+            this.lb1.Location = new System.Drawing.Point(178, 26);
             this.lb1.Name = "lb1";
-            this.lb1.Size = new System.Drawing.Size(176, 18);
+            this.lb1.Size = new System.Drawing.Size(0, 18);
             this.lb1.TabIndex = 4;
-            this.lb1.Text = "程序初始化成功，等待用户输入";
             this.lb1.Click += new System.EventHandler(this.Lb1_Click);
-            // 
-            // lb2
-            // 
-            this.lb2.AutoSize = true;
-            this.lb2.Location = new System.Drawing.Point(144, 62);
-            this.lb2.Name = "lb2";
-            this.lb2.Size = new System.Drawing.Size(260, 18);
-            this.lb2.TabIndex = 6;
-            this.lb2.Text = "如果F2不能正常恢复MuMu，请点击停止再启动";
             // 
             // lb3
             // 
@@ -137,13 +138,49 @@ namespace BOWKeyBoardHook
             this.lb3.Size = new System.Drawing.Size(0, 18);
             this.lb3.TabIndex = 8;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(270, 51);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(84, 26);
+            this.comboBox1.TabIndex = 9;
+            this.comboBox1.DropDown += new System.EventHandler(this.comboBox1_DropDown);
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
+            this.comboBox1.DropDownClosed += new System.EventHandler(this.comboBox1_DropDownClosed);
+            this.comboBox1.MouseCaptureChanged += new System.EventHandler(this.comboBox1_Click);
+            // 
+            // lb2
+            // 
+            this.lb2.AutoSize = true;
+            this.lb2.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb2.Location = new System.Drawing.Point(130, 54);
+            this.lb2.Name = "lb2";
+            this.lb2.Size = new System.Drawing.Size(138, 18);
+            this.lb2.TabIndex = 10;
+            this.lb2.Text = "选择MuMu模拟器进程：";
+            this.lb2.Click += new System.EventHandler(this.lb2_Click);
+            // 
+            // programBindingSource
+            // 
+            this.programBindingSource.DataSource = typeof(SuspendMuMu.Program);
+            // 
+            // programBindingSource1
+            // 
+            this.programBindingSource1.DataSource = typeof(SuspendMuMu.Program);
+            // 
+            // emulatorBindingSource
+            // 
+            this.emulatorBindingSource.DataSource = typeof(SuspendMuMu.Emulator);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(413, 103);
-            this.Controls.Add(this.lb3);
             this.Controls.Add(this.lb2);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.lb3);
             this.Controls.Add(this.lb1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
@@ -160,6 +197,9 @@ namespace BOWKeyBoardHook
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.programBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.programBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emulatorBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -175,8 +215,12 @@ namespace BOWKeyBoardHook
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lb1;
-        private System.Windows.Forms.Label lb2;
         private System.Windows.Forms.Label lb3;
+        private System.Windows.Forms.Label lb2;
+        public System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.BindingSource programBindingSource;
+        private System.Windows.Forms.BindingSource programBindingSource1;
+        private System.Windows.Forms.BindingSource emulatorBindingSource;
     }
 }
 

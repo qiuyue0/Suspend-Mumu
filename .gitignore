@@ -1,3 +1,5 @@
 .vs
 SuspendMuMu/bin
 SuspendMuMu/obj
+/SuspendMuMu/Properties/DataSources/Emulator.datasource
+/SuspendMuMu/Properties/DataSources/Program.datasource
