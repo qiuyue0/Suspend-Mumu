@@ -35,7 +35,7 @@ namespace BOWKeyBoardHook
             //最小化主窗口
             //WindowState = FormWindowState.Minimized;
             //任务栏取消图标
-            ShowInTaskbar = false;
+            ShowInTaskbar = true;
         }
 
         private void Showtext(string text1, string text2, string text3)
