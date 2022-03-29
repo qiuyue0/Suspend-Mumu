@@ -173,6 +173,7 @@ namespace BOWKeyBoardHook
         }
         private void comboBox1_DropDown(object sender, EventArgs e)
         {
+            Update_lb1_text();
             //Process[] processes = Process.GetProcessesByName("NebulaPlayer");
             //IList<int> infoList = new List<int>();
             //foreach (Process process in processes)
@@ -185,22 +186,30 @@ namespace BOWKeyBoardHook
         private void Update_lb1_text()
         {
             var PID = common.content;
-            Process process = Process.GetProcessById(PID);
-            string text = "MuMu模拟器进程";
-            switch (Getstatus.GetThreadStatus(process))
+            if (PID == -1)
             {
-                case SuspendMuMu.Status.Suspend:
-                    text += "已暂停";
-                    break;
-                case SuspendMuMu.Status.Resume:
-                    text += "已恢复";
-                    break;
-                case SuspendMuMu.Status.NotRunning:
-                    text += "尚未运行";
-                    break;
+                Showtext("MuMu模拟器尚未运行", null, null);
 
             }
-            lb1.Text = text;
+            else
+            {
+                Process process = Process.GetProcessById(PID);
+                string text = "MuMu模拟器进程";
+                switch (Getstatus.GetThreadStatus(process))
+                {
+                    case SuspendMuMu.Status.Suspend:
+                        text += "已暂停";
+                        break;
+                    case SuspendMuMu.Status.Resume:
+                        text += "已恢复";
+                        break;
+                    case SuspendMuMu.Status.NotRunning:
+                        text += "尚未运行";
+                        break;
+                }
+                lb1.Text = text;
+            }
+            
 
         }
         private void comboBox1_DropDownClosed(object sender, EventArgs e)
@@ -209,6 +218,7 @@ namespace BOWKeyBoardHook
             int PID = Emulator.GetEmulator("NebulaPlayer.exe", comboBox1.SelectedItem.ToString());
             common.content = PID;
             k_hook.Start();
+            Update_lb1_text();
         }
         private void label2_Click(object sender, EventArgs e)
         {
