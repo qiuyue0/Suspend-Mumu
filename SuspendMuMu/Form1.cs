@@ -16,14 +16,20 @@ namespace BOWKeyBoardHook
         public Form1()
         {
             InitializeComponent();
-            Process[] processes = Process.GetProcessesByName("NebulaPlayer");
-            IList<int> infoList = new List<int>();
-            foreach (Process process in processes)
-            {
-                infoList.Add(process.Id);
-            }
+            //Process[] processes = Process.GetProcessesByName("NebulaPlayer");
+            //IList<int> infoList = new List<int>();
+            //foreach (Process process in processes)
+            //{
+            //    infoList.Add(process.Id);
+            //}
+            //comboBox1.DataSource = infoList;
+            //common.content = infoList[0];
+            IList<string> infoList = new List<string>();
+            infoList.Add("主窗口");
+            infoList.Add("多开窗口");
             comboBox1.DataSource = infoList;
-            common.content = infoList[0];
+            int PID = Emulator.GetEmulator("NebulaPlayer.exe", "主窗口");
+            common.content = PID;
             Update_lb1_text();
         }
 
@@ -132,7 +138,7 @@ namespace BOWKeyBoardHook
             //最小化主窗口
             WindowState = FormWindowState.Minimized;
             //任务栏取消图标
-            ShowInTaskbar = true;
+            ShowInTaskbar = false;
         }
 
         private void Form1_Deactivate(object sender, EventArgs e)
@@ -167,14 +173,14 @@ namespace BOWKeyBoardHook
         }
         private void comboBox1_DropDown(object sender, EventArgs e)
         {
-            Process[] processes = Process.GetProcessesByName("NebulaPlayer");
-            IList<int> infoList = new List<int>();
-            foreach (Process process in processes)
-            {
-                infoList.Add(process.Id);
-            }
-            comboBox1.DataSource = null;
-            comboBox1.DataSource = infoList;
+            //Process[] processes = Process.GetProcessesByName("NebulaPlayer");
+            //IList<int> infoList = new List<int>();
+            //foreach (Process process in processes)
+            //{
+            //    infoList.Add(process.Id);
+            //}
+            //comboBox1.DataSource = null;
+            //comboBox1.DataSource = infoList;
         }
         private void Update_lb1_text()
         {
@@ -199,10 +205,10 @@ namespace BOWKeyBoardHook
         }
         private void comboBox1_DropDownClosed(object sender, EventArgs e)
         {
-            common.content = int.Parse(comboBox1.SelectedItem.ToString());
-            var PID = common.content;
-            Update_lb1_text();
-            
+            k_hook.Stop();
+            int PID = Emulator.GetEmulator("NebulaPlayer.exe", comboBox1.SelectedItem.ToString());
+            common.content = PID;
+            k_hook.Start();
         }
         private void label2_Click(object sender, EventArgs e)
         {
