@@ -8,7 +8,7 @@ namespace SuspendMuMu
     // 现在是不可用状态
     public static class Emulator
     {
-        public static int GetEmulator(string ProcessName,string whichone)
+        public static int GetEmulator(string ProcessName, string whichone)
         {
             //List<int> result = new List<int>();
             string wmiQuery = string.Format("select CommandLine,Handle from Win32_Process where Name='{0}'", ProcessName);
@@ -26,18 +26,26 @@ namespace SuspendMuMu
                                 return int.Parse(retObject["Handle"].ToString());
                             }
                         }
-                        else if (whichone == "多开窗口")
+                        else if (whichone == "多开窗口1")
                         {
                             if (commandline[5] == "1")
                             {
                                 return int.Parse(retObject["Handle"].ToString());
                             }
                         }
+                        else if (whichone == "多开窗口2")
+                        {
+                            if (commandline[5] == "2")
+                            {
+                                return int.Parse(retObject["Handle"].ToString());
+                            }
+                        }
+
                     }
                 }
+                return -1;
             }
-            return -1;
+
         }
-        
     }
 }

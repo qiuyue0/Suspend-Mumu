@@ -132,7 +132,7 @@ namespace SuspendMuMu
         {
             
             KeyboardHookStruct MyKeyboardHookStruct = (KeyboardHookStruct)Marshal.PtrToStructure(lParam, typeof(KeyboardHookStruct));
-            if (MyKeyboardHookStruct.vkCode == 113 & (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
+            if (MyKeyboardHookStruct.vkCode == 115 & (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
             {
                 try
                 {

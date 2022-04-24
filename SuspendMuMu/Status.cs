@@ -27,24 +27,29 @@ namespace SuspendMuMu
     public static class Getstatus {
         public static Status GetThreadStatus(Process process)
         {
-            
-            
-            if (null != process)
+            try
             {
-                ProcessThread thread = process.Threads[0];
-                if (thread.WaitReason == ThreadWaitReason.Suspended)
+                if (null != process)
                 {
-                    
-                    return Status.Suspend;
+                    ProcessThread thread = process.Threads[0];
+                    if (thread.WaitReason == ThreadWaitReason.Suspended)
+                    {
+
+                        return Status.Suspend;
+                    }
+                    else
+                    {
+                        return Status.Resume;
+                    }
                 }
                 else
                 {
-                    return Status.Resume;
+                    return Status.NotRunning;
                 }
             }
-            else
+            catch
             {
-                return Status.NotRunning;
+                return Status.Resume;
             }
         }
     }
