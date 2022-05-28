@@ -20,10 +20,7 @@ namespace SuspendMuMu
                     {
                         uint ThreadCount = (uint)retObject["ThreadCount"];
                         int Handle = int.Parse((string)retObject["Handle"]);
-                        if (ThreadCount > 100)
-                        {
-                            result.Add(Handle);
-                        }
+                        if (ThreadCount > 100) result.Add(Handle);
 
                     }
                     try
