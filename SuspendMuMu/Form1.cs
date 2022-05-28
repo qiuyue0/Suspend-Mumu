@@ -28,7 +28,7 @@ namespace BOWKeyBoardHook
             infoList.Add("主窗口");
             infoList.Add("多开窗口");
             comboBox1.DataSource = infoList;
-            int PID = Emulator.GetEmulator("NebulaPlayer.exe", "主窗口");
+            int PID = Emulator.GetEmulator("Nebula.exe", "主窗口");
             common.content = PID;
             Update_lb1_text();
         }
@@ -215,7 +215,7 @@ namespace BOWKeyBoardHook
         private void comboBox1_DropDownClosed(object sender, EventArgs e)
         {
             k_hook.Stop();
-            int PID = Emulator.GetEmulator("NebulaPlayer.exe", comboBox1.SelectedItem.ToString());
+            int PID = Emulator.GetEmulator("Nebula.exe", comboBox1.SelectedItem.ToString());
             common.content = PID;
             k_hook.Start();
             Update_lb1_text();

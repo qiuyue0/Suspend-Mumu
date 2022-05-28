@@ -44,6 +44,7 @@ namespace BOWKeyBoardHook
             this.lb3 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.lb2 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.programBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.programBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.emulatorBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -113,7 +114,7 @@ namespace BOWKeyBoardHook
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(129, 26);
+            this.label1.Location = new System.Drawing.Point(129, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 18);
             this.label1.TabIndex = 3;
@@ -124,7 +125,7 @@ namespace BOWKeyBoardHook
             // 
             this.lb1.AutoSize = true;
             this.lb1.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb1.Location = new System.Drawing.Point(178, 26);
+            this.lb1.Location = new System.Drawing.Point(179, 39);
             this.lb1.Name = "lb1";
             this.lb1.Size = new System.Drawing.Size(0, 18);
             this.lb1.TabIndex = 4;
@@ -142,7 +143,7 @@ namespace BOWKeyBoardHook
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(270, 51);
+            this.comboBox1.Location = new System.Drawing.Point(270, 65);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(84, 26);
             this.comboBox1.TabIndex = 9;
@@ -155,12 +156,22 @@ namespace BOWKeyBoardHook
             // 
             this.lb2.AutoSize = true;
             this.lb2.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb2.Location = new System.Drawing.Point(130, 54);
+            this.lb2.Location = new System.Drawing.Point(130, 68);
             this.lb2.Name = "lb2";
             this.lb2.Size = new System.Drawing.Size(138, 18);
             this.lb2.TabIndex = 10;
             this.lb2.Text = "选择MuMu模拟器进程：";
             this.lb2.Click += new System.EventHandler(this.lb2_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.Location = new System.Drawing.Point(129, 13);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(238, 18);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "请不要连续点击F2，程序需要一定时间反应";
             // 
             // programBindingSource
             // 
@@ -179,6 +190,7 @@ namespace BOWKeyBoardHook
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(413, 103);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.lb2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.lb3);
@@ -222,6 +234,7 @@ namespace BOWKeyBoardHook
         private System.Windows.Forms.BindingSource programBindingSource;
         private System.Windows.Forms.BindingSource programBindingSource1;
         private System.Windows.Forms.BindingSource emulatorBindingSource;
+        private System.Windows.Forms.Label label2;
     }
 }
 
