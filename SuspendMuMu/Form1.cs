@@ -26,7 +26,8 @@ namespace BOWKeyBoardHook
             //common.content = infoList[0];
             IList<string> infoList = new List<string>();
             infoList.Add("主窗口");
-            infoList.Add("多开窗口");
+            infoList.Add("多开窗口1");
+            infoList.Add("多开窗口2");
             comboBox1.DataSource = infoList;
             int PID = Emulator.GetEmulator("Nebula.exe", "主窗口");
             common.content = PID;
@@ -233,6 +234,20 @@ namespace BOWKeyBoardHook
         private void lb2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void label2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            k_hook.Stop();
+            int PID = Emulator.GetEmulator("Nebula.exe", comboBox1.SelectedItem.ToString());
+            common.content = PID;
+            k_hook.Start();
+            Update_lb1_text();
         }
     }
 }

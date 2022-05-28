@@ -45,6 +45,7 @@ namespace BOWKeyBoardHook
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.lb2 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.programBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.programBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.emulatorBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -89,10 +90,10 @@ namespace BOWKeyBoardHook
             // 
             this.button1.Enabled = false;
             this.button1.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button1.Location = new System.Drawing.Point(31, 18);
+            this.button1.Location = new System.Drawing.Point(31, 7);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(87, 34);
+            this.button1.Size = new System.Drawing.Size(80, 30);
             this.button1.TabIndex = 1;
             this.button1.Text = "启动";
             this.button1.UseVisualStyleBackColor = true;
@@ -101,10 +102,10 @@ namespace BOWKeyBoardHook
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button2.Location = new System.Drawing.Point(31, 54);
+            this.button2.Location = new System.Drawing.Point(31, 37);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(87, 34);
+            this.button2.Size = new System.Drawing.Size(80, 30);
             this.button2.TabIndex = 2;
             this.button2.Text = "停止";
             this.button2.UseVisualStyleBackColor = true;
@@ -169,9 +170,22 @@ namespace BOWKeyBoardHook
             this.label2.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label2.Location = new System.Drawing.Point(129, 13);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(238, 18);
+            this.label2.Size = new System.Drawing.Size(364, 18);
             this.label2.TabIndex = 11;
-            this.label2.Text = "请不要连续点击F2，程序需要一定时间反应";
+            this.label2.Text = "请不要连续点击F2，程序需要一定时间反应；关闭pcr后请点击重启";
+            this.label2.Click += new System.EventHandler(this.label2_Click_1);
+            // 
+            // button3
+            // 
+            this.button3.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button3.Location = new System.Drawing.Point(31, 67);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(80, 30);
+            this.button3.TabIndex = 12;
+            this.button3.Text = "重启";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // programBindingSource
             // 
@@ -189,7 +203,8 @@ namespace BOWKeyBoardHook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(413, 103);
+            this.ClientSize = new System.Drawing.Size(498, 103);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lb2);
             this.Controls.Add(this.comboBox1);
@@ -235,6 +250,7 @@ namespace BOWKeyBoardHook
         private System.Windows.Forms.BindingSource programBindingSource1;
         private System.Windows.Forms.BindingSource emulatorBindingSource;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button3;
     }
 }
 
