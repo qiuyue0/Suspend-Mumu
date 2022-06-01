@@ -31,6 +31,7 @@ namespace BOWKeyBoardHook
             comboBox1.DataSource = infoList;
             int PID = Emulator.GetEmulator("Nebula.exe", "主窗口");
             common.content = PID;
+            common.ProessName = "主窗口";
             Update_lb1_text();
         }
 
@@ -218,6 +219,7 @@ namespace BOWKeyBoardHook
             k_hook.Stop();
             int PID = Emulator.GetEmulator("Nebula.exe", comboBox1.SelectedItem.ToString());
             common.content = PID;
+            common.ProessName = comboBox1.SelectedItem.ToString();
             k_hook.Start();
             Update_lb1_text();
         }
@@ -246,6 +248,7 @@ namespace BOWKeyBoardHook
             k_hook.Stop();
             int PID = Emulator.GetEmulator("Nebula.exe", comboBox1.SelectedItem.ToString());
             common.content = PID;
+            common.ProessName = comboBox1.SelectedItem.ToString();
             k_hook.Start();
             Update_lb1_text();
         }

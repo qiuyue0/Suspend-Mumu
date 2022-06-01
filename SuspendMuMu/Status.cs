@@ -10,12 +10,18 @@ namespace SuspendMuMu
     // 全局变量，用来存放当前选择的pid
     public class common 
     {
-    private static int PID;
-
+        private static int PID;
+        private static string Name;
         public static int content
         {
             get { return PID; }
             set { PID = value; }
+        }
+
+        public static string ProessName
+        {
+            get { return Name; }
+            set { Name = value; }
         }
     }
     public enum Status

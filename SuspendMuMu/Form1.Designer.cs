@@ -170,9 +170,9 @@ namespace BOWKeyBoardHook
             this.label2.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label2.Location = new System.Drawing.Point(129, 13);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(364, 18);
+            this.label2.Size = new System.Drawing.Size(250, 18);
             this.label2.TabIndex = 11;
-            this.label2.Text = "请不要连续点击F2，程序需要一定时间反应；关闭pcr后请点击重启";
+            this.label2.Text = "请不要连续点击F2，程序需要一定时间反应；";
             this.label2.Click += new System.EventHandler(this.label2_Click_1);
             // 
             // button3
@@ -203,7 +203,7 @@ namespace BOWKeyBoardHook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(498, 103);
+            this.ClientSize = new System.Drawing.Size(405, 103);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lb2);

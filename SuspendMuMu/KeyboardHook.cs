@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Threading;
 namespace SuspendMuMu
 {
     internal class KeyboardHook
@@ -126,7 +127,11 @@ namespace SuspendMuMu
         private const int WM_SYSKEYDOWN = 0x104;//SYSKEYDOWN
         private const int WM_SYSKEYUP = 0x105;//SYSKEYUP
 
-
+        private void updatePID(object obj)
+        {
+            string which = (string)obj;
+            common.content = Emulator.GetEmulator("nebula.exe", which);
+        }
 
         private int KeyboardHookProc(int nCode, int wParam, IntPtr lParam)
         {
@@ -136,6 +141,10 @@ namespace SuspendMuMu
             {
                 try
                 {
+                    ParameterizedThreadStart getPidStart = new ParameterizedThreadStart(updatePID);
+                    Thread getPID = new Thread(getPidStart);
+                    getPID.Start(common.ProessName);
+                    getPID.Join();
                     var PID = common.content;
                     Process process = Process.GetProcessById(PID);
                     if (ShowText != null)
