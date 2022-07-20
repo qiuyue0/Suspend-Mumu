@@ -11,7 +11,7 @@ namespace SuspendMuMu
         /// </summary>
         [STAThread]
         private static void Main()
-        {
+    {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             /**

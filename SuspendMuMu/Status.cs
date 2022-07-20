@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace SuspendMuMu
 {
     // 全局变量，用来存放当前选择的pid
-    public class common 
+    public class common
     {
         private static int PID;
         private static string Name;
@@ -30,25 +30,31 @@ namespace SuspendMuMu
         Resume,
         NotRunning
     }
-    public static class Getstatus {
+    public static class Getstatus
+    {
         public static Status GetThreadStatus(Process process)
         {
-            
-            
-            if (null != process)
+            try
             {
-                ProcessThread thread = process.Threads[0];
-                if (thread.WaitReason == ThreadWaitReason.Suspended)
+                if (null != process)
                 {
-                    
-                    return Status.Suspend;
+                    ProcessThread thread = process.Threads[0];
+                    if (thread.WaitReason == ThreadWaitReason.Suspended)
+                    {
+
+                        return Status.Suspend;
+                    }
+                    else
+                    {
+                        return Status.Resume;
+                    }
                 }
                 else
                 {
-                    return Status.Resume;
+                    return Status.NotRunning;
                 }
             }
-            else
+            catch
             {
                 return Status.NotRunning;
             }

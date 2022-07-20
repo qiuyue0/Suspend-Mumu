@@ -16,7 +16,7 @@ namespace BOWKeyBoardHook
         public Form1()
         {
             InitializeComponent();
-            //Process[] processes = Process.GetProcessesByName("NebulaPlayer");
+            //Process[] processes = Process.GetProcessesByName("nebulaPlayer");
             //IList<int> infoList = new List<int>();
             //foreach (Process process in processes)
             //{
@@ -29,7 +29,7 @@ namespace BOWKeyBoardHook
             infoList.Add("多开窗口1");
             infoList.Add("多开窗口2");
             comboBox1.DataSource = infoList;
-            int PID = Emulator.GetEmulator("Nebula.exe", "主窗口");
+            int PID = Emulator.GetEmulator("nebula", "主窗口");
             common.content = PID;
             common.ProessName = "主窗口";
             Update_lb1_text();
@@ -176,7 +176,7 @@ namespace BOWKeyBoardHook
         private void comboBox1_DropDown(object sender, EventArgs e)
         {
             Update_lb1_text();
-            //Process[] processes = Process.GetProcessesByName("NebulaPlayer");
+            //Process[] processes = Process.GetProcessesByName("nebulaPlayer");
             //IList<int> infoList = new List<int>();
             //foreach (Process process in processes)
             //{
@@ -217,7 +217,7 @@ namespace BOWKeyBoardHook
         private void comboBox1_DropDownClosed(object sender, EventArgs e)
         {
             k_hook.Stop();
-            int PID = Emulator.GetEmulator("Nebula.exe", comboBox1.SelectedItem.ToString());
+            int PID = Emulator.GetEmulator("nebula", comboBox1.SelectedItem.ToString());
             common.content = PID;
             common.ProessName = comboBox1.SelectedItem.ToString();
             k_hook.Start();
@@ -246,7 +246,7 @@ namespace BOWKeyBoardHook
         private void button3_Click(object sender, EventArgs e)
         {
             k_hook.Stop();
-            int PID = Emulator.GetEmulator("Nebula.exe", comboBox1.SelectedItem.ToString());
+            int PID = Emulator.GetEmulator("nebula", comboBox1.SelectedItem.ToString());
             common.content = PID;
             common.ProessName = comboBox1.SelectedItem.ToString();
             k_hook.Start();

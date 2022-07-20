@@ -130,7 +130,7 @@ namespace SuspendMuMu
         private void updatePID(object obj)
         {
             string which = (string)obj;
-            common.content = Emulator.GetEmulator("nebula.exe", which);
+            common.content = Emulator.GetEmulator("nebula", which);
         }
 
         private int KeyboardHookProc(int nCode, int wParam, IntPtr lParam)
@@ -141,10 +141,10 @@ namespace SuspendMuMu
             {
                 try
                 {
-                    ParameterizedThreadStart getPidStart = new ParameterizedThreadStart(updatePID);
-                    Thread getPID = new Thread(getPidStart);
-                    getPID.Start(common.ProessName);
-                    getPID.Join();
+                    //ParameterizedThreadStart getPidStart = new ParameterizedThreadStart(updatePID);
+                    //Thread getPID = new Thread(getPidStart);
+                    //getPID.Start(common.ProessName);
+                    //getPID.Join();
                     var PID = common.content;
                     Process process = Process.GetProcessById(PID);
                     if (ShowText != null)
