@@ -88,7 +88,7 @@ namespace SuspendMuMu
                 if (s.StartsWith("com.bilibili.priconne")) return true;
 
                 return false;
-            }  
+            }
             catch
             {
                 return false;

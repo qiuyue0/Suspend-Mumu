@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Management;
-using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Diagnostics;
 

@@ -1,12 +1,7 @@
 using System;
 using System.Diagnostics;
-using System.Management;
 using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
-using System.Windows.Controls;
 using System.Windows.Forms;
-using System.Collections.Generic;
-using System.Threading;
 namespace SuspendMuMu
 {
     internal class KeyboardHook
@@ -62,7 +57,7 @@ namespace SuspendMuMu
         //使用WINDOWS API函数代替获取当前实例的函数,防止钩子失效
         [DllImport("kernel32.dll")]
         public static extern IntPtr GetModuleHandle(string name);
-        
+
         public void Start(string txt = "主窗口")
         {
 
@@ -94,7 +89,7 @@ namespace SuspendMuMu
                     throw new Exception("安装键盘钩子失败");
                 }
             }
-            }
+        }
 
         public void Stop()
         {
@@ -135,7 +130,7 @@ namespace SuspendMuMu
 
         private int KeyboardHookProc(int nCode, int wParam, IntPtr lParam)
         {
-            
+
             KeyboardHookStruct MyKeyboardHookStruct = (KeyboardHookStruct)Marshal.PtrToStructure(lParam, typeof(KeyboardHookStruct));
             if (MyKeyboardHookStruct.vkCode == 113 & (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
             {
@@ -224,7 +219,7 @@ namespace SuspendMuMu
             //如果返回0或调用CallNextHookEx函数则消息出了这个钩子继续往下传递，也就是传给消息真正的接受者
             return CallNextHookEx(hKeyboardHook, nCode, wParam, lParam);
         }
-        
+
         ~KeyboardHook()
         {
             Stop();

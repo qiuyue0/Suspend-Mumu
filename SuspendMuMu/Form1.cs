@@ -1,13 +1,8 @@
-using SuspendMuMu;
 using System;
-using System.Windows.Forms;
-using System.Management;
-using System.Text.RegularExpressions;
-using static System.Net.Mime.MediaTypeNames;
 using System.Collections.Generic;
 using System.Diagnostics;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using System.Security.Cryptography;
+using System.Windows.Forms;
+using SuspendMuMu;
 
 namespace BOWKeyBoardHook
 {
@@ -47,7 +42,7 @@ namespace BOWKeyBoardHook
         }
 
         private void Showtext(string text1, string text2, string text3)
-        { 
+        {
             if (text1 != null)
             {
                 lb1.Text = text1;
@@ -169,7 +164,7 @@ namespace BOWKeyBoardHook
         {
 
         }
-        private void comboBox1_Click(object sender,EventArgs e)
+        private void comboBox1_Click(object sender, EventArgs e)
         {
 
         }
@@ -211,7 +206,7 @@ namespace BOWKeyBoardHook
                 }
                 lb1.Text = text;
             }
-            
+
 
         }
         private void comboBox1_DropDownClosed(object sender, EventArgs e)
@@ -225,7 +220,7 @@ namespace BOWKeyBoardHook
         }
         private void label2_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)

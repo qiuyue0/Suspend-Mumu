@@ -1,6 +1,6 @@
-﻿using BOWKeyBoardHook;
-using System;
+﻿using System;
 using System.Windows.Forms;
+using BOWKeyBoardHook;
 
 namespace SuspendMuMu
 {
@@ -11,7 +11,7 @@ namespace SuspendMuMu
         /// </summary>
         [STAThread]
         private static void Main()
-    {
+        {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             /**

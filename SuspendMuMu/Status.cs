@@ -1,9 +1,4 @@
 ﻿using System.Diagnostics;
-using System.Threading;
-using System.Management;
-using System.Text.RegularExpressions;
-using System;
-using System.Collections.Generic;
 
 namespace SuspendMuMu
 {
