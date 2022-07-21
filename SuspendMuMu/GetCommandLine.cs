@@ -54,8 +54,8 @@ namespace SuspendMuMu
                 return 0;
             }
         }
-
-        public static bool IsPcr(Process process)
+        // 获取是否为pcr窗口的同时传出父进程pid用于以后排序
+        public static Tuple<bool,Int32> IsPcr(Process process)
         {
             try
             {
@@ -85,13 +85,14 @@ namespace SuspendMuMu
                 string s = new string('\0', length / 2);
                 ReadProcessMemory(handle, buffer, s, new IntPtr(length), IntPtr.Zero);
 
-                if (s.StartsWith("com.bilibili.priconne")) return true;
 
-                return false;
+                if (s.StartsWith("com.bilibili.priconne")) return Tuple.Create(true,info.InheritedFromUniqueProcessId.ToInt32());
+
+                return Tuple.Create(false, 0);
             }
             catch
             {
-                return false;
+                return Tuple.Create(false, 0);
             }
         }
     }

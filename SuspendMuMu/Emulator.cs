@@ -10,14 +10,18 @@ namespace SuspendMuMu
         {
             try
             {
-                List<Process> result = new List<Process>();
+                // 第一个存Pcr进程PID，第二个存
+                List<ChildAndParentProcess> result = new List<ChildAndParentProcess>();
                 // 麻了，终于找到了可靠的判断方法
                 Process[] processes = Process.GetProcessesByName(ProcessName);
                 foreach (Process process in processes)
                 {
-                    if (GetCommandLine.IsPcr(process))
+                    Tuple<bool, Int32> tuple = GetCommandLine.IsPcr(process);
+                    bool isPcr = tuple.Item1;
+                    if (isPcr)
                     {
-                        result.Add(process);
+                        Process parentProcess = Process.GetProcessById(tuple.Item2);
+                        result.Add(new ChildAndParentProcess(process,parentProcess));
                     }
                 }
                 result.Sort(SortTime);
@@ -29,17 +33,17 @@ namespace SuspendMuMu
                 else i = result.Count;
 
 
-                return result[i].Id;
+                return result[i].child.Id;
             }
             catch
             {
                 return 0;
             }
         }
-        private static int SortTime(Process A, Process B)
+        private static int SortTime(ChildAndParentProcess A, ChildAndParentProcess B)
         {
-            DateTime creatTimeA = A.StartTime;
-            DateTime creatTimeB = B.StartTime;
+            DateTime creatTimeA = A.parent.StartTime;
+            DateTime creatTimeB = B.parent.StartTime;
             if (creatTimeA > creatTimeB)
             {
                 return 1;
@@ -49,6 +53,19 @@ namespace SuspendMuMu
                 return -1;
             }
             return 0;
+        }
+        internal class ChildAndParentProcess
+        {
+            public Process child;
+            public Process parent;
+
+            public ChildAndParentProcess(Process child, Process parent)
+            {
+                this.child = child;
+                this.parent = parent;
+            }
+
+            
         }
     }
 }
