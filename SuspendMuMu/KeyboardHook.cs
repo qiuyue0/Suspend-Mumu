@@ -140,7 +140,8 @@ namespace SuspendMuMu
                     //Thread getPID = new Thread(getPidStart);
                     //getPID.Start(common.ProessName);
                     //getPID.Join();
-                    var PID = common.content;
+                    
+                    var PID = Emulator.GetEmulator("nebula", common.ProessName);
                     Process process = Process.GetProcessById(PID);
                     if (ShowText != null)
                     {
