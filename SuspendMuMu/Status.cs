@@ -7,6 +7,8 @@ namespace SuspendMuMu
     {
         private static int PID;
         private static string Name;
+        private static int vk_Code;
+        private static string vk_Name;
         public static int content
         {
             get { return PID; }
@@ -17,6 +19,17 @@ namespace SuspendMuMu
         {
             get { return Name; }
             set { Name = value; }
+        }
+
+        public static int key
+        {
+            get { return vk_Code; }
+            set { vk_Code = value; }
+        }
+        public static string keyName
+        {
+            get { return vk_Name; }
+            set { vk_Name = value; }
         }
     }
     public enum Status

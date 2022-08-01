@@ -132,7 +132,7 @@ namespace SuspendMuMu
         {
 
             KeyboardHookStruct MyKeyboardHookStruct = (KeyboardHookStruct)Marshal.PtrToStructure(lParam, typeof(KeyboardHookStruct));
-            if (MyKeyboardHookStruct.vkCode == 113 & (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
+            if (MyKeyboardHookStruct.vkCode == common.key & (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
             {
                 try
                 {
@@ -143,6 +143,7 @@ namespace SuspendMuMu
                     
                     var PID = Emulator.GetEmulator("nebula", common.ProessName);
                     Process process = Process.GetProcessById(PID);
+                    KeysConverter kc = new KeysConverter();
                     if (ShowText != null)
                     {
                         switch (Getstatus.GetThreadStatus(process))
