@@ -46,9 +46,12 @@ namespace BOWKeyBoardHook
             this.lb2 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.programBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.programBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.emulatorBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button4 = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.programBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.programBindingSource1)).BeginInit();
@@ -170,9 +173,9 @@ namespace BOWKeyBoardHook
             this.label2.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label2.Location = new System.Drawing.Point(129, 13);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(250, 18);
+            this.label2.Size = new System.Drawing.Size(272, 18);
             this.label2.TabIndex = 11;
-            this.label2.Text = "请不要连续点击F2，程序需要一定时间反应；";
+            this.label2.Text = "请不要连续点击暂停按键，程序需要一定时间反应";
             this.label2.Click += new System.EventHandler(this.label2_Click_1);
             // 
             // button3
@@ -187,6 +190,25 @@ namespace BOWKeyBoardHook
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.Location = new System.Drawing.Point(129, 100);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(104, 18);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "选择暂停快捷键：";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(237, 97);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(229, 25);
+            this.textBox1.TabIndex = 14;
+            this.textBox1.Text = "F2";
+            // 
             // programBindingSource
             // 
             this.programBindingSource.DataSource = typeof(SuspendMuMu.Program);
@@ -199,11 +221,26 @@ namespace BOWKeyBoardHook
             // 
             this.emulatorBindingSource.DataSource = typeof(SuspendMuMu.Emulator);
             // 
+            // button4
+            // 
+            this.button4.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button4.Location = new System.Drawing.Point(17, 97);
+            this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(100, 30);
+            this.button4.TabIndex = 15;
+            this.button4.Text = "使用说明";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(405, 103);
+            this.ClientSize = new System.Drawing.Size(478, 131);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lb2);
@@ -220,7 +257,7 @@ namespace BOWKeyBoardHook
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "F2暂停/恢复黄MuMu进程";
+            this.Text = "暂停/恢复黄MuMu进程";
             this.Deactivate += new System.EventHandler(this.Form1_Deactivate);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -251,6 +288,9 @@ namespace BOWKeyBoardHook
         private System.Windows.Forms.BindingSource emulatorBindingSource;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button4;
     }
 }
 
