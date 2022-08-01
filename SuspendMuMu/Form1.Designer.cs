@@ -90,24 +90,24 @@ namespace BOWKeyBoardHook
             // 
             this.button1.Enabled = false;
             this.button1.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button1.Location = new System.Drawing.Point(31, 7);
+            this.button1.Location = new System.Drawing.Point(17, 7);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(80, 30);
+            this.button1.Size = new System.Drawing.Size(100, 30);
             this.button1.TabIndex = 1;
-            this.button1.Text = "启动";
+            this.button1.Text = "启动键盘钩子";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button2.Location = new System.Drawing.Point(31, 37);
+            this.button2.Location = new System.Drawing.Point(17, 37);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(80, 30);
+            this.button2.Size = new System.Drawing.Size(100, 30);
             this.button2.TabIndex = 2;
-            this.button2.Text = "停止";
+            this.button2.Text = "卸载键盘钩子";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
@@ -117,9 +117,9 @@ namespace BOWKeyBoardHook
             this.label1.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.Location = new System.Drawing.Point(129, 40);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 18);
+            this.label1.Size = new System.Drawing.Size(116, 18);
             this.label1.TabIndex = 3;
-            this.label1.Text = "状态：";
+            this.label1.Text = "状态：等待按键输入";
             this.label1.Click += new System.EventHandler(this.Label1_Click);
             // 
             // lb1
@@ -178,10 +178,10 @@ namespace BOWKeyBoardHook
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button3.Location = new System.Drawing.Point(31, 67);
+            this.button3.Location = new System.Drawing.Point(17, 67);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(80, 30);
+            this.button3.Size = new System.Drawing.Size(100, 30);
             this.button3.TabIndex = 12;
             this.button3.Text = "更新PID";
             this.button3.UseVisualStyleBackColor = true;
