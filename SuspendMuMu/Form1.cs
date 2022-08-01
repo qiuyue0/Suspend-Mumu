@@ -27,7 +27,6 @@ namespace BOWKeyBoardHook
             int PID = Emulator.GetEmulator("nebula", "主窗口");
             common.content = PID;
             common.ProessName = "主窗口";
-            Update_lb1_text();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -170,15 +169,7 @@ namespace BOWKeyBoardHook
         }
         private void comboBox1_DropDown(object sender, EventArgs e)
         {
-            Update_lb1_text();
-            //Process[] processes = Process.GetProcessesByName("nebulaPlayer");
-            //IList<int> infoList = new List<int>();
-            //foreach (Process process in processes)
-            //{
-            //    infoList.Add(process.Id);
-            //}
-            //comboBox1.DataSource = null;
-            //comboBox1.DataSource = infoList;
+            
         }
         private void Update_lb1_text()
         {
@@ -211,12 +202,7 @@ namespace BOWKeyBoardHook
         }
         private void comboBox1_DropDownClosed(object sender, EventArgs e)
         {
-            k_hook.Stop();
-            int PID = Emulator.GetEmulator("nebula", comboBox1.SelectedItem.ToString());
-            common.content = PID;
             common.ProessName = comboBox1.SelectedItem.ToString();
-            k_hook.Start();
-            Update_lb1_text();
         }
         private void label2_Click(object sender, EventArgs e)
         {
