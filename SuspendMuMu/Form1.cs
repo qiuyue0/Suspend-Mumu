@@ -18,7 +18,7 @@ namespace BOWKeyBoardHook
             //    infoList.Add(process.Id);
             //}
             //comboBox1.DataSource = infoList;
-            //common.content = infoList[0];
+            //common.Pid = infoList[0];
             IList<string> infoList = new List<string>
             {
                 "主窗口",
@@ -27,10 +27,10 @@ namespace BOWKeyBoardHook
             };
             comboBox1.DataSource = infoList;
             int PID = Emulator.GetEmulator("nebula", "主窗口");
-            common.content = PID;
-            common.ProessName = "主窗口";
-            common.key = 113;
-            common.keyName = "F2";
+            Common.Pid = PID;
+            Common.ProessName = "主窗口";
+            Common.VkCode = 113;
+            Common.KeyName = "F2";
             textBox1.KeyDown += new KeyEventHandler(KeyDownWork);
         }
         private void KeyDownWork(object sender, KeyEventArgs e)
@@ -38,15 +38,15 @@ namespace BOWKeyBoardHook
             k_hook.Stop();
             KeysConverter kc = new KeysConverter();
             int keyCode = (int)e.KeyCode;
-            if (keyCode >= 17 & keyCode <= 18)      
+            if (keyCode >= 17 & keyCode <= 18)  // 禁止将按键定义为Alt或Ctrl     
             {
-                MessageBox.Show(string.Format("不受支持的按键，请重新定义，当前快捷键为{0}", common.keyName));
+                MessageBox.Show(string.Format("不受支持的按键，请重新定义，当前快捷键为{0}", Common.KeyName));
             }
             else
             {
                 textBox1.Text = kc.ConvertToString(keyCode);
-                common.key = keyCode;
-                common.keyName = textBox1.Text;
+                Common.VkCode = keyCode;
+                Common.KeyName = textBox1.Text;
             }
             k_hook.Start();
         }
@@ -194,7 +194,7 @@ namespace BOWKeyBoardHook
         }
         private void Update_lb1_text()
         {
-            var PID = common.content;
+            var PID = Common.Pid;
             if (PID == -1)
             {
                 Showtext("MuMu模拟器尚未运行", null, null);
@@ -223,7 +223,7 @@ namespace BOWKeyBoardHook
         }
         private void comboBox1_DropDownClosed(object sender, EventArgs e)
         {
-            common.ProessName = comboBox1.SelectedItem.ToString();
+            Common.ProessName = comboBox1.SelectedItem.ToString();
         }
         private void label2_Click(object sender, EventArgs e)
         {
@@ -249,8 +249,8 @@ namespace BOWKeyBoardHook
         {
             k_hook.Stop();
             int PID = Emulator.GetEmulator("nebula", comboBox1.SelectedItem.ToString());
-            common.content = PID;
-            common.ProessName = comboBox1.SelectedItem.ToString();
+            Common.Pid = PID;
+            Common.ProessName = comboBox1.SelectedItem.ToString();
             k_hook.Start();
             Update_lb1_text();
         }

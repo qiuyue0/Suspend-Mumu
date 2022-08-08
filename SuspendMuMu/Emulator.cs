@@ -10,7 +10,7 @@ namespace SuspendMuMu
         {
             try
             {
-                // 第一个存Pcr进程PID，第二个存
+                // 第一个存Pcr进程PID，第二个存父进程PID
                 List<ChildAndParentProcess> result = new List<ChildAndParentProcess>();
                 // 麻了，终于找到了可靠的判断方法
                 Process[] processes = Process.GetProcessesByName(ProcessName);
@@ -21,7 +21,7 @@ namespace SuspendMuMu
                     if (isPcr)
                     {
                         Process parentProcess = Process.GetProcessById(tuple.Item2);
-                        result.Add(new ChildAndParentProcess(process,parentProcess));
+                        result.Add(new ChildAndParentProcess(process, parentProcess));
                     }
                 }
                 result.Sort(SortTime);
@@ -32,7 +32,6 @@ namespace SuspendMuMu
                 // fallback 默认取最后开的窗口
                 else i = result.Count;
 
-
                 return result[i].child.Id;
             }
             catch
@@ -40,6 +39,7 @@ namespace SuspendMuMu
                 return 0;
             }
         }
+
         private static int SortTime(ChildAndParentProcess A, ChildAndParentProcess B)
         {
             DateTime creatTimeA = A.parent.StartTime;
@@ -54,6 +54,7 @@ namespace SuspendMuMu
             }
             return 0;
         }
+
         internal class ChildAndParentProcess
         {
             public Process child;
@@ -64,8 +65,6 @@ namespace SuspendMuMu
                 this.child = child;
                 this.parent = parent;
             }
-
-            
         }
     }
 }

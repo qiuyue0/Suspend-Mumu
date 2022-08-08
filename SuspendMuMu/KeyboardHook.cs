@@ -122,17 +122,11 @@ namespace SuspendMuMu
         private const int WM_SYSKEYDOWN = 0x104;//SYSKEYDOWN
         private const int WM_SYSKEYUP = 0x105;//SYSKEYUP
 
-        private void updatePID(object obj)
-        {
-            string which = (string)obj;
-            common.content = Emulator.GetEmulator("nebula", which);
-        }
-
         private int KeyboardHookProc(int nCode, int wParam, IntPtr lParam)
         {
 
             KeyboardHookStruct MyKeyboardHookStruct = (KeyboardHookStruct)Marshal.PtrToStructure(lParam, typeof(KeyboardHookStruct));
-            if (MyKeyboardHookStruct.vkCode == common.key & (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
+            if (MyKeyboardHookStruct.vkCode == Common.VkCode & (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
             {
                 try
                 {
@@ -141,7 +135,7 @@ namespace SuspendMuMu
                     //getPID.Start(common.ProessName);
                     //getPID.Join();
                     
-                    var PID = Emulator.GetEmulator("nebula", common.ProessName);
+                    var PID = Emulator.GetEmulator("nebula", Common.ProessName);
                     Process process = Process.GetProcessById(PID);
                     KeysConverter kc = new KeysConverter();
                     if (ShowText != null)
@@ -164,10 +158,6 @@ namespace SuspendMuMu
                         }
                     }
                 }
-                //catch(InvalidOperationException ex)
-                //{
-                //    Start();
-                //}
                 catch
                 {
                     if (ShowText != null)

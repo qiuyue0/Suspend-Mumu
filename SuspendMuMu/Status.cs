@@ -2,35 +2,15 @@
 
 namespace SuspendMuMu
 {
-    // 全局变量，用来存放当前选择的pid
-    public class common
+    // 全局变量，用来存放当前选择的pid、进程名、vkCode
+    public class Common
     {
-        private static int PID;
-        private static string Name;
-        private static int vk_Code;
-        private static string vk_Name;
-        public static int content
-        {
-            get { return PID; }
-            set { PID = value; }
-        }
+        public static int Pid { get; set; }
 
-        public static string ProessName
-        {
-            get { return Name; }
-            set { Name = value; }
-        }
+        public static string ProessName { get; set; }
 
-        public static int key
-        {
-            get { return vk_Code; }
-            set { vk_Code = value; }
-        }
-        public static string keyName
-        {
-            get { return vk_Name; }
-            set { vk_Name = value; }
-        }
+        public static int VkCode { get; set; }
+        public static string KeyName { get; set; }
     }
     public enum Status
     {

@@ -22,6 +22,7 @@ namespace SuspendMuMu
         [DllImport("ntdll.dll")]
         [ResourceExposure(ResourceScope.Machine)]
         public static extern int NtQueryInformationProcess(IntPtr processHandle, int query, NtProcessBasicInfo info, int size, int[] returnedSize);
+
         //打开一个已存在的进程对象，并返回进程的句柄
         [DllImportAttribute("kernel32.dll", EntryPoint = "OpenProcess")]
         public static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dwProcessId);
@@ -29,10 +30,13 @@ namespace SuspendMuMu
         //关闭一个内核对象。其中包括文件、文件映射、进程、线程、安全和同步对象等。
         [DllImport("kernel32.dll")]
         private static extern void CloseHandle(IntPtr hObject);
+
         [DllImportAttribute("kernel32.dll", EntryPoint = "ReadProcessMemory")]
         public static extern bool ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, IntPtr lpBuffer, int nSize, IntPtr lpNumberOfBytesRead);
+        
         [DllImport("kernel32.dll", SetLastError = true)]
         private static extern bool ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, [MarshalAs(UnmanagedType.LPWStr)] string lpBuffer, IntPtr dwSize, IntPtr lpNumberOfBytesRead);
+        
         public static int ReadMemoryValue(int baseAddress, int pid)
         {
             try
@@ -55,7 +59,7 @@ namespace SuspendMuMu
             }
         }
         // 获取是否为pcr窗口的同时传出父进程pid用于以后排序
-        public static Tuple<bool,Int32> IsPcr(Process process)
+        public static Tuple<bool, Int32> IsPcr(Process process)
         {
             try
             {
@@ -86,7 +90,7 @@ namespace SuspendMuMu
                 ReadProcessMemory(handle, buffer, s, new IntPtr(length), IntPtr.Zero);
 
 
-                if (s.StartsWith("com.bilibili.priconne")) return Tuple.Create(true,info.InheritedFromUniqueProcessId.ToInt32());
+                if (s.StartsWith("com.bilibili.priconne")) return Tuple.Create(true, info.InheritedFromUniqueProcessId.ToInt32());
 
                 return Tuple.Create(false, 0);
             }
