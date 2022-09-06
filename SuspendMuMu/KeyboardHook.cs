@@ -140,17 +140,17 @@ namespace SuspendMuMu
                     KeysConverter kc = new KeysConverter();
                     if (ShowText != null)
                     {
-                        switch (Getstatus.GetThreadStatus(process))
+                        switch (GetStatus.GetThreadStatus(process))
                         {
-                            case Status.Suspend:
+                            case Status.SUSPENDED:
                                 process.Resume();
                                 ShowText("MuMu模拟器进程已恢复", null, null);
                                 break;
-                            case Status.Resume:
+                            case Status.RESUMED:
                                 process.Suspend();
                                 ShowText("MuMu模拟器进程已暂停", null, null);
                                 break;
-                            case Status.NotRunning:
+                            case Status.NOT_RUNNING:
                                 ShowText("MuMu模拟器进程尚未运行", null, null);
                                 break;
                             default:

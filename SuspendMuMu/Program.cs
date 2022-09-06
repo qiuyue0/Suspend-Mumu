@@ -30,12 +30,14 @@ namespace SuspendMuMu
             else
             {
                 //创建启动对象
-                System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-                startInfo.UseShellExecute = true;
-                startInfo.WorkingDirectory = Environment.CurrentDirectory;
-                startInfo.FileName = Application.ExecutablePath;
-                //设置启动动作,确保以管理员身份运行
-                startInfo.Verb = "runas";
+                System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo
+                {
+                    UseShellExecute = true,
+                    WorkingDirectory = Environment.CurrentDirectory,
+                    FileName = Application.ExecutablePath,
+                    //设置启动动作,确保以管理员身份运行
+                    Verb = "runas"
+                };
                 try
                 {
                     System.Diagnostics.Process.Start(startInfo);

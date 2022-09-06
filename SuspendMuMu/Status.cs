@@ -6,19 +6,17 @@ namespace SuspendMuMu
     public class Common
     {
         public static int Pid { get; set; }
-
         public static string ProessName { get; set; }
-
         public static int VkCode { get; set; }
         public static string KeyName { get; set; }
     }
     public enum Status
     {
-        Suspend,
-        Resume,
-        NotRunning
+        SUSPENDED,
+        RESUMED,
+        NOT_RUNNING
     }
-    public static class Getstatus
+    public static class GetStatus
     {
         public static Status GetThreadStatus(Process process)
         {
@@ -30,21 +28,21 @@ namespace SuspendMuMu
                     if (thread.WaitReason == ThreadWaitReason.Suspended)
                     {
 
-                        return Status.Suspend;
+                        return Status.SUSPENDED;
                     }
                     else
                     {
-                        return Status.Resume;
+                        return Status.RESUMED;
                     }
                 }
                 else
                 {
-                    return Status.NotRunning;
+                    return Status.NOT_RUNNING;
                 }
             }
             catch
             {
-                return Status.NotRunning;
+                return Status.NOT_RUNNING;
             }
         }
     }
