@@ -73,7 +73,7 @@ namespace BOWKeyBoardHook
             this.CloseToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(101, 48);
-            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.ContextMenuStrip1_Opening);
             // 
             // RestoreToolStripMenuItem
             // 
@@ -151,10 +151,10 @@ namespace BOWKeyBoardHook
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(84, 26);
             this.comboBox1.TabIndex = 9;
-            this.comboBox1.DropDown += new System.EventHandler(this.comboBox1_DropDown);
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
-            this.comboBox1.DropDownClosed += new System.EventHandler(this.comboBox1_DropDownClosed);
-            this.comboBox1.MouseCaptureChanged += new System.EventHandler(this.comboBox1_Click);
+            this.comboBox1.DropDown += new System.EventHandler(this.ComboBox1_DropDown);
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged_1);
+            this.comboBox1.DropDownClosed += new System.EventHandler(this.ComboBox1_DropDownClosed);
+            this.comboBox1.MouseCaptureChanged += new System.EventHandler(this.ComboBox1_Click);
             // 
             // lb2
             // 
@@ -165,7 +165,7 @@ namespace BOWKeyBoardHook
             this.lb2.Size = new System.Drawing.Size(138, 18);
             this.lb2.TabIndex = 10;
             this.lb2.Text = "选择MuMu模拟器进程：";
-            this.lb2.Click += new System.EventHandler(this.lb2_Click);
+            this.lb2.Click += new System.EventHandler(this.Lb2_Click);
             // 
             // label2
             // 
@@ -176,7 +176,7 @@ namespace BOWKeyBoardHook
             this.label2.Size = new System.Drawing.Size(272, 18);
             this.label2.TabIndex = 11;
             this.label2.Text = "请不要连续点击暂停按键，程序需要一定时间反应";
-            this.label2.Click += new System.EventHandler(this.label2_Click_1);
+            this.label2.Click += new System.EventHandler(this.Label2_Click_1);
             // 
             // button3
             // 
@@ -188,7 +188,7 @@ namespace BOWKeyBoardHook
             this.button3.TabIndex = 12;
             this.button3.Text = "更新PID";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
             // label3
             // 
@@ -207,7 +207,6 @@ namespace BOWKeyBoardHook
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(229, 25);
             this.textBox1.TabIndex = 14;
-            this.textBox1.Text = "F2";
             // 
             // programBindingSource
             // 
@@ -231,7 +230,7 @@ namespace BOWKeyBoardHook
             this.button4.TabIndex = 15;
             this.button4.Text = "使用说明";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.Click += new System.EventHandler(this.Button4_Click);
             // 
             // Form1
             // 
