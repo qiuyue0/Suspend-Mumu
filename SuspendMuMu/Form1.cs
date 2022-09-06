@@ -11,14 +11,6 @@ namespace BOWKeyBoardHook
         public Form1()
         {
             InitializeComponent();
-            //Process[] processes = Process.GetProcessesByName("nebulaPlayer");
-            //IList<int> infoList = new List<int>();
-            //foreach (Process process in processes)
-            //{
-            //    infoList.Add(process.Id);
-            //}
-            //comboBox1.DataSource = infoList;
-            //common.Pid = infoList[0];
             IList<string> infoList = new List<string>
             {
                 "主窗口",
@@ -29,9 +21,9 @@ namespace BOWKeyBoardHook
             int PID = Emulator.GetEmulator("nebula", "主窗口");
             Common.Pid = PID;
             Common.ProessName = "主窗口";
-            Common.VkCode = 113;
-            Common.KeyName = "F2";
+            Config.Load();
             textBox1.KeyDown += new KeyEventHandler(KeyDownWork);
+            textBox1.Text = Common.KeyName;
         }
         private void KeyDownWork(object sender, KeyEventArgs e)
         {
@@ -47,6 +39,7 @@ namespace BOWKeyBoardHook
                 textBox1.Text = kc.ConvertToString(keyCode);
                 Common.VkCode = keyCode;
                 Common.KeyName = textBox1.Text;
+                Config.Save();
             }
             k_hook.Start();
         }
@@ -55,10 +48,6 @@ namespace BOWKeyBoardHook
             k_hook.ShowText += Showtext;
             k_hook.Start();//安装键盘钩子
             hookstart = true;
-            //最小化主窗口
-            //WindowState = FormWindowState.Minimized;
-            //任务栏取消图标
-            ShowInTaskbar = true;
         }
 
         private void Showtext(string text1, string text2, string text3)
@@ -86,7 +75,7 @@ namespace BOWKeyBoardHook
                 //还原窗体
                 WindowState = FormWindowState.Normal;
                 //任务显示
-                ShowInTaskbar = true;
+                //ShowInTaskbar = true;
             }
             //激活窗体
             Activate();
@@ -99,7 +88,7 @@ namespace BOWKeyBoardHook
                 //还原窗体
                 WindowState = FormWindowState.Normal;
                 //任务显示
-                ShowInTaskbar = true;
+                //ShowInTaskbar = true;
             }
             //激活窗体
             Activate();
@@ -155,7 +144,7 @@ namespace BOWKeyBoardHook
             //最小化主窗口
             WindowState = FormWindowState.Minimized;
             //任务栏取消图标
-            ShowInTaskbar = false;
+            //ShowInTaskbar = false;
         }
 
         private void Form1_Deactivate(object sender, EventArgs e)
@@ -163,7 +152,7 @@ namespace BOWKeyBoardHook
             if (WindowState == FormWindowState.Minimized)
             {
                 //任务栏取消图标
-                ShowInTaskbar = false;
+                //ShowInTaskbar = false;
             }
         }
 
@@ -175,20 +164,20 @@ namespace BOWKeyBoardHook
         {
         }
 
-        private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        private void ContextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
 
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-        private void comboBox1_Click(object sender, EventArgs e)
+        private void ComboBox1_Click(object sender, EventArgs e)
         {
 
         }
-        private void comboBox1_DropDown(object sender, EventArgs e)
+        private void ComboBox1_DropDown(object sender, EventArgs e)
         {
             
         }
@@ -204,15 +193,15 @@ namespace BOWKeyBoardHook
             {
                 Process process = Process.GetProcessById(PID);
                 string text = "MuMu模拟器进程";
-                switch (Getstatus.GetThreadStatus(process))
+                switch (GetStatus.GetThreadStatus(process))
                 {
-                    case SuspendMuMu.Status.Suspend:
+                    case SuspendMuMu.Status.SUSPENDED:
                         text += "已暂停";
                         break;
-                    case SuspendMuMu.Status.Resume:
+                    case SuspendMuMu.Status.RESUMED:
                         text += "已恢复";
                         break;
-                    case SuspendMuMu.Status.NotRunning:
+                    case SuspendMuMu.Status.NOT_RUNNING:
                         text += "尚未运行";
                         break;
                 }
@@ -221,31 +210,31 @@ namespace BOWKeyBoardHook
 
 
         }
-        private void comboBox1_DropDownClosed(object sender, EventArgs e)
+        private void ComboBox1_DropDownClosed(object sender, EventArgs e)
         {
             Common.ProessName = comboBox1.SelectedItem.ToString();
         }
-        private void label2_Click(object sender, EventArgs e)
+        private void Label2_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void ComboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
 
         }
 
-        private void lb2_Click(object sender, EventArgs e)
+        private void Lb2_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label2_Click_1(object sender, EventArgs e)
+        private void Label2_Click_1(object sender, EventArgs e)
         {
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void Button3_Click(object sender, EventArgs e)
         {
             k_hook.Stop();
             int PID = Emulator.GetEmulator("nebula", comboBox1.SelectedItem.ToString());
@@ -255,7 +244,7 @@ namespace BOWKeyBoardHook
             Update_lb1_text();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void Button4_Click(object sender, EventArgs e)
         {
             MessageBox.Show("点击定义的按键以暂停/恢复mumu进程，黄蓝mumu均可使用。\n\n" +
                 "默认按键为F2，可以在选择暂停快捷键右侧文本框按键以自定义，请不要使用Ctrl和Alt。\n\n" +
