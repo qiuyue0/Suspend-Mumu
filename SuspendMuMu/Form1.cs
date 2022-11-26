@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using SuspendMuMu;
 
@@ -8,6 +9,8 @@ namespace BOWKeyBoardHook
 {
     public partial class Form1 : Form
     {
+        [DllImport("user32.dll ", SetLastError = true)]
+        public static extern void SwitchToThisWindow(IntPtr hWnd, bool fAltTab);
         public Form1()
         {
             InitializeComponent();
@@ -32,7 +35,7 @@ namespace BOWKeyBoardHook
             int keyCode = (int)e.KeyCode;
             if (keyCode >= 17 & keyCode <= 18)  // 禁止将按键定义为Alt或Ctrl     
             {
-                MessageBox.Show(string.Format("不受支持的按键，请重新定义，当前快捷键为{0}", Common.KeyName));
+                MessageBox.Show($"不受支持的按键，请重新定义，当前快捷键为{Common.KeyName}");
             }
             else
             {
@@ -236,12 +239,18 @@ namespace BOWKeyBoardHook
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            k_hook.Stop();
-            int PID = Emulator.GetEmulator("nebula", comboBox1.SelectedItem.ToString());
-            Common.Pid = PID;
-            Common.ProessName = comboBox1.SelectedItem.ToString();
-            k_hook.Start();
-            Update_lb1_text();
+            try
+            {
+                int PID = Emulator.GetEmulator("nebula", comboBox1.SelectedItem.ToString());
+                Process process = Process.GetProcessById(PID);
+                Process window = process.Parent().Parent().Parent();
+                IntPtr handle = window.MainWindowHandle;
+                SwitchToThisWindow(handle, true);
+            }
+            catch 
+            { 
+
+            }
         }
 
         private void Button4_Click(object sender, EventArgs e)
@@ -249,7 +258,9 @@ namespace BOWKeyBoardHook
             MessageBox.Show("点击定义的按键以暂停/恢复mumu进程，黄蓝mumu均可使用。\n\n" +
                 "默认按键为F2，可以在选择暂停快捷键右侧文本框按键以自定义，请不要使用Ctrl和Alt。\n\n" +
                 "按键有大小写之分，因此建议使用F功能区按键以避免大小写带来的问题。\n\n" +
-                "本体与多开窗口的识别是根据模拟器开启时间判断的，如果开启了两个多开窗口，关闭第一个多开窗口后，剩下一个会补位成为多开窗口1，因此使用时请注意是否选择了正确的窗口");
+                "本体与多开窗口的识别是根据模拟器开启时间判断的，如果开启了两个多开窗口，关闭第一个多开窗口后，剩下一个会补位成为多开窗口1，因此使用时请注意是否选择了正确的窗口\n\n"+
+                "点击“转到MuMu”窗口可以将现在所选的模拟器置于前台"
+                );
         }
     }
 }

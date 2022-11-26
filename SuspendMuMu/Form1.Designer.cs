@@ -92,7 +92,7 @@ namespace BOWKeyBoardHook
             // button1
             // 
             this.button1.Enabled = false;
-            this.button1.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button1.Location = new System.Drawing.Point(17, 7);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
@@ -104,7 +104,7 @@ namespace BOWKeyBoardHook
             // 
             // button2
             // 
-            this.button2.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button2.Location = new System.Drawing.Point(17, 37);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button2.Name = "button2";
@@ -117,10 +117,10 @@ namespace BOWKeyBoardHook
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.Location = new System.Drawing.Point(129, 40);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(116, 18);
+            this.label1.Size = new System.Drawing.Size(115, 15);
             this.label1.TabIndex = 3;
             this.label1.Text = "状态：等待按键输入";
             this.label1.Click += new System.EventHandler(this.Label1_Click);
@@ -128,10 +128,10 @@ namespace BOWKeyBoardHook
             // lb1
             // 
             this.lb1.AutoSize = true;
-            this.lb1.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb1.Location = new System.Drawing.Point(179, 39);
             this.lb1.Name = "lb1";
-            this.lb1.Size = new System.Drawing.Size(0, 18);
+            this.lb1.Size = new System.Drawing.Size(0, 15);
             this.lb1.TabIndex = 4;
             this.lb1.Click += new System.EventHandler(this.Lb1_Click);
             // 
@@ -140,7 +140,7 @@ namespace BOWKeyBoardHook
             this.lb3.AutoSize = true;
             this.lb3.Location = new System.Drawing.Point(210, 90);
             this.lb3.Name = "lb3";
-            this.lb3.Size = new System.Drawing.Size(0, 18);
+            this.lb3.Size = new System.Drawing.Size(0, 15);
             this.lb3.TabIndex = 8;
             // 
             // comboBox1
@@ -149,7 +149,7 @@ namespace BOWKeyBoardHook
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(270, 65);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(84, 26);
+            this.comboBox1.Size = new System.Drawing.Size(84, 23);
             this.comboBox1.TabIndex = 9;
             this.comboBox1.DropDown += new System.EventHandler(this.ComboBox1_DropDown);
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged_1);
@@ -159,10 +159,10 @@ namespace BOWKeyBoardHook
             // lb2
             // 
             this.lb2.AutoSize = true;
-            this.lb2.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb2.Location = new System.Drawing.Point(130, 68);
             this.lb2.Name = "lb2";
-            this.lb2.Size = new System.Drawing.Size(138, 18);
+            this.lb2.Size = new System.Drawing.Size(139, 15);
             this.lb2.TabIndex = 10;
             this.lb2.Text = "选择MuMu模拟器进程：";
             this.lb2.Click += new System.EventHandler(this.Lb2_Click);
@@ -170,33 +170,33 @@ namespace BOWKeyBoardHook
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label2.Location = new System.Drawing.Point(129, 13);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(272, 18);
+            this.label2.Size = new System.Drawing.Size(271, 15);
             this.label2.TabIndex = 11;
             this.label2.Text = "请不要连续点击暂停按键，程序需要一定时间反应";
             this.label2.Click += new System.EventHandler(this.Label2_Click_1);
             // 
             // button3
             // 
-            this.button3.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button3.Location = new System.Drawing.Point(17, 67);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(100, 30);
             this.button3.TabIndex = 12;
-            this.button3.Text = "更新PID";
+            this.button3.Text = "转到MuMu窗口";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label3.Location = new System.Drawing.Point(129, 100);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(104, 18);
+            this.label3.Size = new System.Drawing.Size(103, 15);
             this.label3.TabIndex = 13;
             this.label3.Text = "选择暂停快捷键：";
             // 
@@ -205,24 +205,12 @@ namespace BOWKeyBoardHook
             this.textBox1.Location = new System.Drawing.Point(237, 97);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(229, 25);
+            this.textBox1.Size = new System.Drawing.Size(229, 21);
             this.textBox1.TabIndex = 14;
-            // 
-            // programBindingSource
-            // 
-            this.programBindingSource.DataSource = typeof(SuspendMuMu.Program);
-            // 
-            // programBindingSource1
-            // 
-            this.programBindingSource1.DataSource = typeof(SuspendMuMu.Program);
-            // 
-            // emulatorBindingSource
-            // 
-            this.emulatorBindingSource.DataSource = typeof(SuspendMuMu.Emulator);
             // 
             // button4
             // 
-            this.button4.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button4.Location = new System.Drawing.Point(17, 97);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button4.Name = "button4";
@@ -234,7 +222,7 @@ namespace BOWKeyBoardHook
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(478, 131);
             this.Controls.Add(this.button4);
@@ -249,7 +237,7 @@ namespace BOWKeyBoardHook
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Font = new System.Drawing.Font("思源黑体 CN Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
